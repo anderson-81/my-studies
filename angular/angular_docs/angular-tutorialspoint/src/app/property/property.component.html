@@ -1,0 +1,15 @@
+<h1>Property Binding</h1>
+<div *ngIf="isAvailable; else condition2">
+  <h1>{{ selectedMonth }}</h1>
+  <label for="month">Select a month:</label><br>
+  <select name="month" id="month" (change)="changeMonths($event)">
+    <option value="{{month}}" *ngFor="let month of months">{{ month }}</option>
+  </select>
+</div>
+
+<div>
+  <!-- Esse sera ignorado. -->
+  <ng-template #condition1>Condition is invalid.</ng-template>
+  <!-- Sera mostrado esse pois o condition2 la em cima e como false. -->
+  <ng-template #condition2>Invalid condition.</ng-template>
+</div>

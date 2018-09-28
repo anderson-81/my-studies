@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col s6">
+        <h3>Veicules's Listing</h3>
+        <div class="collection">
+            <!-- Nao preciso passar mais a rota aqui, somente o id. -->
+            <a [routerLink]="['/veicule',veicule.id]" routerLinkActivate="active" *ngFor="let veicule of veicules" class="collection-item">
+                {{ veicule.model }}
+            </a>
+        </div>
+    </div>
+    <div class="col s6">
+        <router-outlet></router-outlet>
+    </div>
+</div>

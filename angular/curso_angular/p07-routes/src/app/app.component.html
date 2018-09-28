@@ -1,0 +1,25 @@
+<nav *ngIf="showMenu">
+    <div class="nav-wrapper">
+        <a routerLink="" class="brand-logo">Ng2</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <!-- Testando o pathMatch: -->
+            <li routerLinkActive="active"><a routerLink="">Home</a></li>
+
+            <li routerLinkActive="active"><a routerLink="/people" [queryParams]="{page:1}">People</a></li>
+            <!-- Usando o routerLink como property binding. -->
+            <!-- <li routerLinkActive="active"><a [routerLink]="['person', idInput.value]">Person with ID</a></li> -->
+            <li routerLinkActive="active"><a routerLink="/veicules">Veicules</a></li>
+            <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <!-- Onde as rotas são renderizadas. -->
+    <!-- <h2>Enter with ID:</h2>
+    <input type="text" #idInput> -->
+    <router-outlet></router-outlet>
+</div>
+
+<!-- Adiciono a diretiva routerLink="<LINK>" aos links do navBar. -->
+<!-- routerLinkActive="<nome_da_classe>" para quando a classe estiver ativa. -->
+<!-- Trabalhando com query parameters, eu uso o [queryParams]. -->

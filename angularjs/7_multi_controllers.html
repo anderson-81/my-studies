@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>7 - Multi Controllers</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		var app = angular.module('App', []);
+
+		//Terei acesso a aspectos especificos da aplicação.
+		//Aqui especifíco tudo em nível de aplicação.
+		app.run(function($rootScope){
+			$rootScope.title = "TitleRoot";
+		});
+
+		//Posso usar o $rootScope aqui também.
+		app.controller('PanelController', function($rootScope, $scope, $http){
+			$scope.title = "Panel";
+
+			$scope.changeTitle = function(){
+				$scope.title = Math.round(Math.random() * 10000, 0);
+			}
+		});
+	</script>
+
+	<style>
+		button{
+			cursor:pointer;
+			color:white;
+			font-weight: bold;
+		}
+
+		#troot{
+			color:blue;
+		}
+
+		#t1{
+			color:green;
+		}
+
+		#t2{
+			color:red;
+		}
+
+		#btn1{
+			background-color:green; 
+		}
+
+		#btn2{
+			background-color:red; 
+		}
+
+	</style>
+
+</head>
+<body ng-app="App">
+	<h1 id="troot">{{title}}</h1>
+	<div ng-controller="PanelController">
+		<h2 id="t1">{{title}}</h2>
+		<button id="btn1" ng-click="changeTitle()">CHANGE</button>
+		<!-- Contextos independentes -->
+		<div ng-controller="PanelController">
+			<h2 id="t2">{{title}}</h2>
+			<button id="btn2" ng-click="changeTitle()">CHANGE</button>
+		</div>
+	</div>
+	<br>
+	<!-- Contextos independentes -->
+	<div ng-controller="PanelController">
+		<h2 id="t2">{{title}}</h2>
+		<button id="btn2" ng-click="changeTitle()">CHANGE</button>
+	</div>
+</body>
+</html>

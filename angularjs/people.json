@@ -1,0 +1,43 @@
+[{
+		"id": 1,
+		"name": "Anderson",
+		"salary": 5000.00,
+		"gender": "M"
+	},
+	{
+		"id": 2,
+		"name": "Maurina",
+		"salary": 6000.00,
+		"gender": "F"
+	},
+	{
+		"id": 3,
+		"name": "Adriana",
+		"salary": 3000.00,
+		"gender": "F"
+	},
+	{
+		"id": 4,
+		"name": "Fernanda",
+		"salary": 1700.00,
+		"gender": "F"
+	},
+	{
+		"id": 5,
+		"name": "Michele",
+		"salary": 2000.00,
+		"gender": "F"
+	},
+	{
+		"id": 6,
+		"name": "Marcia",
+		"salary": 1500.00,
+		"gender": "F"
+	},
+	{
+		"id": 7,
+		"name": "Carla",
+		"salary": 2300.00,
+		"gender": "F"
+	}
+]

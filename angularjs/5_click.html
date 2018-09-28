@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5 - Click</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		//Create Module.
+		var app = angular.module('App', []);
+
+		//Create Controller
+		app.controller('AppController', function($scope, $http){
+			//Initializing listPeople
+			$scope.listPeople  = [];
+			//Creating Person 01
+	        $scope.person1 = {"id": 1, "name": "John"};
+	        //Creating Person 02
+			$scope.person2 = {"id": 2, "name": "Mary"};
+			//Adding to people to list
+			$scope.listPeople.push($scope.person1);	
+			$scope.listPeople.push($scope.person2);	
+
+
+			//Creating scope
+			$scope.frmInsert = {
+				"id" : "",
+				"name" : ""
+			};
+
+			//Insert function
+			$scope.InsertPerson= function(){
+				$scope.person = {"id": $scope.frmInsert.id, "name": $scope.frmInsert.name};
+				$scope.listPeople.push($scope.person);	
+
+				//Clear object frmInsert.
+				$scope.frmInsert = [];
+			}
+
+
+			//Delete function
+			$scope.DeletePerson = function(pid){
+				var result = confirm("Do you delete this record?")
+				if(result){
+					//Retorna todos os objetos com ID diferente do passado.
+					$scope.newListPeople = $scope.listPeople.filter(function(person){
+						return person.id != pid;
+					});
+					//Seta todos os objetos retornados a lista principal.
+					$scope.listPeople = $scope.newListPeople;
+				}
+			}
+
+			$scope.showForm = false;
+		});
+	</script>
+
+</head>
+<body ng-app="App">
+	<div ng-controller="AppController">
+		<h1>People's List</h1>
+		<ul>
+			<li ng-repeat="person in listPeople">
+				{{person.id}} --- {{person.name}} <button style="cursor:pointer" ng-click=DeletePerson(person.id)>EXCLUIR</button>
+			</li>
+		</ul>
+
+		<hr>
+		<div ng-show="showForm">
+			<h1>Create People</h1>
+			<label for="">ID:</label><br>
+			<input type="text" ng-model="frmInsert.id"><br>
+			<label for="">NAME:</label><br>
+			<input type="text" ng-model="frmInsert.name"><br>
+			<!--
+			<button style="cursor:pointer" ng-click="InsertPerson(frmInsert.id, frmInsert.name)">CREATE</button>
+			-->
+			<button style="cursor:pointer" ng-click="InsertPerson();">CREATE</button>
+		</div>
+		<br>
+		<input type="checkbox" ng-model="showForm">Show Form
+	</div>
+</body>
+</html>

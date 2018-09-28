@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>1 - Introduction</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		//Criando o module do App.
+		var app = angular.module('App', []);
+
+		//Criando Controller
+		app.controller('AppController', function($scope){
+			$scope.msg = "Hello, World!";
+		});
+	</script>
+
+</head>
+<body ng-app="App">
+	<div ng-controller="AppController">
+		<h1>{{msg}}</h1>
+	</div>
+</body>
+</html>

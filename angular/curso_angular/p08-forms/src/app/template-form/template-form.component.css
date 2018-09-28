@@ -1,0 +1,5 @@
+/* Sera aplicado aos controles que tiveram touch, 
+menos no corpo do formulário. */
+.ng-invalid.ng-touched:not(form) {
+    border: 3px solid red;
+}

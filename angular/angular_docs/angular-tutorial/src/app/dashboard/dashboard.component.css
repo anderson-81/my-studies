@@ -1,0 +1,12 @@
+li{
+    cursor: pointer;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.selected{
+    font-weight:bold;
+    color:red;
+}

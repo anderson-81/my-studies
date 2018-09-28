@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4 - ng-repeat</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		//Create Module.
+		var app = angular.module('App', []);
+
+		//Create Controller
+		app.controller('AppController', function($scope, $http){
+			//Initializing listPeople
+			$scope.listPeople  = [];
+			//Creating Person 01
+	        $scope.person1 = {"id": 1, "name": "John"};
+	        //Creating Person 02
+			$scope.person2 = {"id": 2, "name": "Mary"};
+			//Adding to people to list
+			$scope.listPeople.push($scope.person1);	
+			$scope.listPeople.push($scope.person2);	
+		});
+	</script>
+
+</head>
+<body ng-app="App">
+	<div ng-controller="AppController">
+		<h1>People's List</h1>
+		<ul>
+			<li ng-repeat="person in listPeople">
+				{{person.id}} --- {{person.name}} 
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

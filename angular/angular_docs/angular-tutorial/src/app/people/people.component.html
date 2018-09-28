@@ -1,0 +1,21 @@
+<h1>{{ title }}</h1>
+
+<ul class="people">
+    <li *ngFor="let p of people">
+        <a routerLink="/details/{{p.id}}">
+            {{p.id}} - {{p.name}}
+        </a>
+    </li>
+</ul>
+
+<!-- <app-people-details [person]="person"></app-people-details> -->
+
+<div *ngIf="person">
+    <hr>
+    <h3>Person's Form:</h3>
+    <div>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" [(ngModel)]="person.name">
+    </div>
+    <hr>
+</div>

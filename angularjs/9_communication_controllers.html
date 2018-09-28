@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9 - Communication between controllers</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		//Create Module.
+		var app = angular.module('App', []);
+
+		//Create PanelController
+		app.controller('PanelController', function($rootScope, $scope, $http){
+			$scope.personSelected = null;
+			$scope.$on('PersonSelected', function(event, oEvent){
+				$scope.personSelected = oEvent;
+				$scope.show = true;
+			});
+		});
+
+
+		//Create ListController
+		app.controller('ListController', function($scope, $rootScope, $http){
+			$scope.GetPeople = function(){
+				$http({
+		            method: 'GET',
+		            url: "people.json",
+		            async: false
+		        }).then(function Success(response) {
+		        	$scope.listPeople = response.data;
+		        }, function Error(response) {
+		            alert("Error!");
+		        });
+			}
+
+			$scope.GetPeople();
+
+			/****************/
+
+			$scope.SelectPerson = function(person){
+				$rootScope.$broadcast("PersonSelected", person);
+			}
+		});
+
+
+	</script>
+
+</head>
+<body ng-app="App">
+	<div ng-controller="ListController">
+		<h1>People's List</h1>
+		<ul>
+			<li ng-repeat="person in listPeople" ng-click="SelectPerson(person);">
+				{{person.name}}
+			</li>
+		</ul>
+	</div>
+	<hr>
+	<div ng-controller="PanelController" ng-show="show">
+		<h1>{{personSelected.name}}</h1>
+		<h3>ID: {{personSelected.id}}</h3>
+		<h3>Salary: {{personSelected.salary}}</h3>
+		<h3>Gender: {{personSelected.gender}}</h3>
+	</div>
+</body>
+</html>

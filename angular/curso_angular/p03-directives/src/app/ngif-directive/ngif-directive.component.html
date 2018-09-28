@@ -1,0 +1,35 @@
+<h3>*ngIf</h3>
+
+<div *ngIf="show == true">
+    <div [hidden]="!(people.length > 0)" >
+        <h4>Person's Listing</h4>
+        <ul>
+          <li *ngFor="let person of people">
+            {{person}}
+          </li>
+        </ul>
+    </div>
+    <div [hidden]="!(people.length == 0)" >
+        <h4>Don't have people register.</h4>
+    </div>
+</div>
+
+<template [ngIf]="show">
+    <h3>Mostra o uso real do *ngIf, com template puro.</h3>
+</template>
+
+<div template="ngIf show">
+  <h3>Mostra o uso real do *ngIf, com a propriedade "template".</h3>
+</div>
+
+
+<button (click)="ToggleList()">{{text}}</button>
+
+<!-- ngIf => Pode ter problema de performance. 
+  ngIf => Arvore grande | hidden => Arvore pequena.
+  ngIf é mais seguro para conteúdo que precisam ser ocultos.
+-->
+
+
+
+

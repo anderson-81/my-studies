@@ -1,0 +1,24 @@
+<section class="event-binding">
+  <article>
+      <h3>Event Binding</h3>
+      <div>
+        <!-- Utilizando [] colchetes, pego propriedades -->
+        <!-- Utilizando () parenteses, pego métodos. -->
+        <button on-click="ShowMessage()" class="btn btn-success">Click Me!</button>
+      </div>
+      <div>
+        <h3>{{ currentValue }}</h3>
+        <h3>{{ savedValue }}</h3>
+        
+        <input type="text" (keyup)="onKeyUp($event)" (keyup.enter)="SaveValue(fieldSave.value)" (blur)="SaveValue(fieldSave.value)" #fieldSave >
+      </div>
+
+      <span 
+        (mouseover)="OnMouseOverOut()" 
+        (mouseout)="OnMouseOverOut()" 
+        [class.highlight]="isMouseOver">
+          Passe o mouse sobre mim.
+      </span>
+  </article>
+</section>
+

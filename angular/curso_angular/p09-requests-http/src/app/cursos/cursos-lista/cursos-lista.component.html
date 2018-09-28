@@ -1,0 +1,16 @@
+<h3>Lista de Cursos</h3>
+
+<!-- Mostrar as linhas somente quando o async estiver carregado. 
+  Senão mensagem de carregamento e mostrada. -->
+<div *ngIf="cursos$ | async as cursos; else loading" >
+<ul>
+  <!-- <li *ngFor="let curso of cursos$ | async"> -->
+  <li *ngFor="let curso of cursos">
+    {{ curso.id }} - {{ curso.name }}
+  </li>
+</ul>
+</div>
+
+<ng-template #loading>
+  <span>Carregando cursos...</span>
+</ng-template>

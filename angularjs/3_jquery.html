@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3 - Breaking the jQuery Idea</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		//Create module
+		var app = angular.module('App', []);
+
+		//Create Controller
+		app.controller('AppController', function($scope){
+			$scope.ativo = false;
+		});
+	</script>
+
+</head>
+<body ng-app="App">
+	<div ng-controller="AppController">
+		<!-- Two way-bind example -->
+		<h1>{{name}}</h1>
+		<input type="text" ng-model="name" placeholder="Your name, please...">
+		<br>
+		<h3>{{ativo}}</h3>
+		<input type="checkbox" ng-model="ativo">
+	</div>
+</body>
+</html>

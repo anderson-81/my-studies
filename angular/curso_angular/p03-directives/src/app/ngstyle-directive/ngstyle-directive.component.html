@@ -1,0 +1,21 @@
+<h1>ngStyle</h1>
+
+<!-- Utilizando property binding -->
+<div class="container">
+  <button [style.backgroundColor]="active1 ? 'red':'green'" [style.font-weight]="active1 ? 'bold':'normal'" (click)="ChangeProperties1()"
+    style="color:white">
+    Change!
+  </button>
+  <input type="text" [(ngModel)]="active1" readonly [style.font-weight]="active1 ? 'bold':'normal'">
+</div>
+
+<!-- Utilizando ngStyle -->
+<div class="container">
+    <button [ngStyle]="{
+      'backgroundColor': (active2 ? 'blue': 'orange'),
+      'font-weight': (active2 ? 'bold': 'normal')
+    }" (click)="ChangeProperties2()" style="color:white">
+    Change!
+  </button>
+  <input type="text" [(ngModel)]="active2" readonly [style.font-weight]="active2 ? 'bold':'normal'">
+</div>

@@ -1,0 +1,185 @@
+<!-- Incluir diretiva de formulário -->
+<!-- Incluir um método de submissão do formulário, (ngSubmit)="Metodo()" 
+      passando o proprio formulario f.-->
+<!-- Associar cada campo ao formulário atraves da renomeação do 
+      mesmo e da diretiva ngModel. -->
+<!-- Iniciando campos: [(ngModel)]="entidade.attr" (two-way data binding, mudanças ++se refletem.) -->
+<!-- Somente inicializar: [ngModel]="entidade.attr" (property model, mudanças não se refletem.) -->
+<form #f="ngForm" (ngSubmit)="SubmitForm(f)" class="form-horizontal">
+  <div class="form-group" [ngClass]="setError(name)">
+    <div class="col-sm-12">
+      <label for="name" class="control-label">Name</label>
+      <!-- <input type="text" class="form-control" id="name" name="name" [(ngModel)]="person.name" required #inputname> -->
+      <!-- 
+            <div>
+              {{ inputname.className }}
+            </div>
+            -->
+    </div>
+    <div class="col-sm-12">
+      <!-- Com variavel atrelada ao ngModel -->
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="person.name" required #name="ngModel">
+      <div *ngIf="!name.valid && name.touched" class="alert alert-danger">
+        <!-- Nome invalido e recebeu foco? -->
+        <b>Invalid name!</b>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" [class.has-error]="!email.valid && email.touched">
+    <div class="col-sm-12">
+      <label for="email" class="control-label">Email</label>
+    </div>
+    <div class="col-sm-12">
+      <!-- Trabalhando com angular 2 
+          <input type="email" class="form-control" id="email" placeholder="name@email.com" name="email" [(ngModel)]="person.email" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])">
+        -->
+      <!-- Trabalhando com angular 4 -->
+      <input type="email" class="form-control" id="email" placeholder="name@email.com" name="email" [(ngModel)]="person.email"
+        required email #email="ngModel">
+      <div *ngIf="!email.valid && email.touched" class="alert alert-danger">
+        <!-- Email invalido e recebeu foco? -->
+        <b>Invalid email!</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADDRESS -->
+  <!-- Agrupando campos com a diretiva ngModelGroup. -->
+  <!--
+     {
+      "name": null,
+      "email": null,
+      "address": {
+        "cep": null,
+        "num": null,
+        "complement": null,
+        "city": null,
+        "state": null
+      }
+    }
+  -->
+  <div ngModelGroup="address">
+    <div class="form-group" [class.has-error]="!cep.valid && cep.touched">
+      <div class="col-md-12">
+        <label for="cep" class="control-label">cep</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="cep" name="cep" [(ngModel)]="person.cep" required #cep="ngModel"
+          (blur)="SearchCep($event.target.value, f)">
+        <div *ngIf="!cep.valid && cep.touched" class="alert alert-danger">
+          <b>Invalid cep!</b>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="!street.valid && street.touched">
+      <div class="col-md-12">
+        <label for="street" class="control-label">street</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="street" name="street" [(ngModel)]="person.street" required #street="ngModel">
+        <div *ngIf="!street.valid && street.touched" class="alert alert-danger">
+          <b>Invalid street!</b>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="!num.valid && num.touched">
+      <div class="col-sm-12">
+        <label for="num" class="control-label">num</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="num" name="num" [(ngModel)]="person.num" required #num="ngModel">
+        <div *ngIf="!num.valid && num.touched" class="alert alert-danger">
+          <b>Invalid num!</b>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="complement" class="control-label">complement</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="complement" name="complement" [(ngModel)]="person.complement"
+          #complement="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="!district.valid && district.touched">
+      <div class="col-md-12">
+        <label for="district" class="control-label">district</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="district" name="district" [(ngModel)]="person.district" required
+          #district="ngModel">
+        <div *ngIf="!district.valid && district.touched" class="alert alert-danger">
+          <b>Invalid district!</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="!city.valid && city.touched">
+      <div class="col-md-12">
+        <label for="city" class="control-label">city</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="city" name="city" [(ngModel)]="person.city" required #city="ngModel">
+        <div *ngIf="!city.valid && city.touched" class="alert alert-danger">
+          <b>Invalid city!</b>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group" [class.has-error]="!state.valid && state.touched">
+      <div class="col-md-12">
+        <label for="state" class="control-label">state</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="state" name="state" [(ngModel)]="person.state" required #state="ngModel">
+        <div *ngIf="!state.valid && state.touched" class="alert alert-danger">
+          <b>Invalid state!</b>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <!-- Com verificaçao se o formulário é válido. -->
+      <button type="submit" class="btn btn-success" [disabled]="!f.valid">SUBMIT</button>
+    </div>
+  </div>
+  <!-- Utilizado somente para debugar o formulario: -->
+  <!-- Passo o formulario atual para o atributo @Input do componente. -->
+  <div class="form-group">
+    <div class="col-sm-12">
+      <app-form-debug [form]="f"></app-form-debug>
+    </div>
+  </div>
+</form>
+
+
+<!-- Validações: 
+    - Posso usar o required no proprio campo.
+    - Verificar a documentação de acordo com a versão do Angular de uso.
+    - Uso do atributo pattern="<EXPRESSAO REGULAR>".
+    - O Angular aplica classes no caso de erros de validação nos campos.
+      - Esse teste pode ser verificado no proprio console com o Inspect do Chrome.
+      - Posso modificar pelo CSS a caracteristica de cada classe aplicada na validação.
+    - Para mostrar imagens de erro, podemos usar proprieaddes do formulario que podem ser
+      pegas atraves do console. Posso criar uma variavel no proprio campo e associa-la a um ngModel.
+    - Estudar as classses de bootstrap para validação e as classes aplicadas quando ha erro.
+    - Para verificar a validação para submissão, pego o atributo valid  do form e atribuo
+      ao property binding [disabled] do botão submit que retornara true ou false.
+    - Uso do form-debug para debugar o formulario, usado somente durante desenvolvimento.
+    
+-->

@@ -1,0 +1,10 @@
+<h3>Person's Details:</h3>
+<div *ngIf="person">
+  <p>ID: {{ person.id }}</p>
+  <p>Name: {{ person.name | uppercase }}</p>
+</div>
+<div *ngIf="!person">
+  <p class="bold">Select a person from list.</p>
+</div>
+
+<button (click)="goBack()">go back</button>

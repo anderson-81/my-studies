@@ -1,0 +1,68 @@
+<h1>Pipes's examples</h1>
+<p>ID: {{ person.id }}</p>
+<p>Name: {{ person.name | camelCase }}</p>
+<p>Email: {{ person.email | uppercase | lowercase }}</p>
+<p>Salary: {{ person.salary | currency:'BRL':true }}</p>
+<p>Birthday: {{ person.birthday | date:'dd-MM-yyyy' }}</p>
+<p>Birthday: {{ person.birthday | date }}</p>
+<p>Gender: {{ person.gender | uppercase }}</p>
+<p>Status: {{ person.status | statusText }}</p>
+<p>Address: {{ person.address | json }}</p>
+
+<br>
+
+
+
+
+<h3>Add Person</h3>
+<input type="text" #inputName>
+<button (click)="AddPerson(inputName.value)">ADD</button>
+<br>
+
+<h1>Pure Pipe</h1>
+
+<input type="text" [(ngModel)]="filter">
+
+<ul>
+    <li *ngFor="let p of people | filterArray:filter">
+        {{ p }}
+    </li>
+</ul>
+
+<h1>Impure Pipe</h1>
+
+<input type="text" [(ngModel)]="filter">
+
+<ul>
+    <li *ngFor="let p of people | filterArrayImpure:filter">
+        {{ p }}
+    </li>
+</ul>
+
+<h1>Maneira correta</h1>
+
+<input type="text" [(ngModel)]="filter">
+
+<ul>
+    <li *ngFor="let p of getPeople()">
+        {{ p }}
+    </li>
+</ul>
+
+<h1>Async Pipe</h1>
+
+<h2>Promise</h2>  
+
+<!-- Obtendo o json do objeto promise (promessa). -->
+<!-- <h3>{{ valAsync1 | json }}</h3> -->
+
+<!-- Obtemos o valor, nao o objeto promise (promessa).  -->
+<h3>{{ valAsync1 | async }}</h3>
+
+<!-- <h2>Observable</h2>   -->
+
+<!-- Obtendo o json do objeto promise (promessa). -->
+<!-- h3>{{ valAsync2 | json }}</h3> -->
+
+<!-- Obtemos o valor, nao o objeto promise (promessa).  -->
+<!-- <h3>{{ valAsync2 | async }}</h3> -->

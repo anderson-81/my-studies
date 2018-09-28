@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11 - AngularJS with jQuery</title>
+	<script src="js/angular.min.js"></script>
+	<script src="js/jquery-3.3.1.js"></script>
+
+	<script>
+		var ctrlPerson = null;
+		$(document).ready(function() {
+			$("#btnEdit").on("click", function(){
+				ctrlPerson.listPeople[0].name = "Anderson Conceição";
+				//Confirm editing
+				ctrlPerson.$apply();
+			});
+		});
+
+		function Edit(){
+			ctrlPerson.listPeople[0].id = 33;
+			//Confirm editing
+			ctrlPerson.$apply();
+		}
+
+		function deletefadeOut(oPerson){
+			var id = $(oPerson).data("id");
+			ctrlPerson.DeletePerson(id);
+			$(oPerson).closest('li').fadeOut('500', function() {
+				ctrlPerson.$apply();
+			});
+		}
+	</script>
+
+	<style>
+		button{
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body ng-app="App">
+	<div ng-controller="AppController">
+		<h1>People's List</h1>
+		<ul>
+			<li ng-repeat="person in listPeople">
+				{{person.id}} --- {{person.name}} 
+				<button onclick="deletefadeOut(this);" data-id="{{person.id}}">DELETE 01</button>
+			</li>
+
+		</ul>
+		<button id="btnEdit" ng-show="listPeople.length > 0">EDIT 01</button>
+		<button onclick="Edit()"ng-show="listPeople.length > 0">EDIT 02</button>
+		
+	</div>
+
+	<script>
+		//Create Module.
+		var app = angular.module('App', []);
+
+		//Create Controller
+		app.controller('AppController', function($scope, $http){
+			ctrlPerson = $scope;
+			//Initializing listPeople
+			$scope.listPeople  = [];
+			//Creating Person 01
+	        $scope.person1 = {"id": 1, "name": "John"};
+	        //Creating Person 02
+			$scope.person2 = {"id": 2, "name": "Mary"};
+			//Adding to people to list
+
+			$scope.listPeople.push($scope.person1);	
+			$scope.listPeople.push($scope.person2);	
+
+			//Delete function
+			$scope.DeletePerson = function(pid){
+				//Retorna todos os objetos com ID diferente do passado.
+				$scope.newListPeople = $scope.listPeople.filter(function(person){
+					return person.id != pid;
+				});
+				//Seta todos os objetos retornados a lista principal.
+				$scope.listPeople = $scope.newListPeople;
+			}
+		});
+	</script>
+</body>
+</html>

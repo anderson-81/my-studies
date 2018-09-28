@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8 - Without $scope</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		var app = angular.module('App', []);
+
+		//Without $scope
+		app.controller('AppController', function($rootScope, $http){
+			var ctrl = this;
+			ctrl.msg = "Hello, World!";
+		});
+	</script>
+</head>
+<body ng-app="App">
+	<div ng-controller="AppController as appCtrl">
+		<h1>{{appCtrl.msg}}</h1>
+	</div>
+</body>
+</html>

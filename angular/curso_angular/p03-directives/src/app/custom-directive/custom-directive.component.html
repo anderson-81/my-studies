@@ -1,0 +1,37 @@
+<!-- Utilizando a diretiva criada por mim. -->
+<h1 appMyDirective>Text with yellow background.</h1>
+
+<button appMyDirective>CLICK</button>
+
+<h1 appMyDirective>Text with yellow background.</h1>
+
+<br>
+
+<h1>MouseEnter</h1>
+<h1 appHighlightMouse>Change background-color to yellow and color to green.</h1>
+
+<br>
+<br>
+
+<h1>Highlight completed</h1>
+<!-- Primeira versão: -->
+<h1 appHighlight [defaultColor]="'red'">Change background-color to customized color.</h1>
+
+
+<!-- Trabalhando com ng-Else -->
+
+<h1>ng-else</h1>
+
+<div *ngElse="show">  
+    <h3>Show if false.</h3>
+</div>
+
+<div *ngElse="!show">  
+    <h3>Show if true.</h3>
+</div>
+
+<!-- <template [ngElse]="!show">
+    <h3>Template ngElse.</h3>
+</template>     -->
+
+<button (click)="ToggleList()">{{text}}</button>

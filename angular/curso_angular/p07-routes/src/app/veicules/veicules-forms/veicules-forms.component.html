@@ -1,0 +1,13 @@
+<h3>Veicules's Form</h3>
+<div class="col s12">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="id" type="text" [(ngModel)]="veicule.id" disabled>
+      <label for="disabled" class="active">#Id</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="model" type="text" [(ngModel)]="veicule.model" (input)="checkInput()">
+      <label for="model" class="active">Model</label>
+    </div>
+  </div>
+</div>

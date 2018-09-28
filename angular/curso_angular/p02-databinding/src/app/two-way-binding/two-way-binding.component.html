@@ -1,0 +1,23 @@
+<h1>Two-Way-Binding</h1>
+
+<!-- Interpolação dos valores passados -->
+<h2>{{ name }}</h2>
+
+<!-- Posso pegar o valor diretamente ou gerar um método para pegar 
+  o valor do campo ao ser digitado e passar para o template.-->
+<input type="text" [value]="name" (input)="name = $event.target.value">
+<br>
+
+<!-- Trabalhando com ngModel. -->
+<input type="text" [ngModel]="name" (ngModelChange)="name = $event">
+<br>
+
+<!-- Trabalhando com ngModel. -->
+<input type="text" [(ngModel)]="name">
+<br>
+
+<!-- Trabalhando com "nome real". -->
+<input type="text" bindon-ngModel="name">
+<br>
+
+<app-my-form></app-my-form>

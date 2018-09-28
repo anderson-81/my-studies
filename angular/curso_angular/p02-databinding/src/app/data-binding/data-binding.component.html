@@ -1,0 +1,15 @@
+<!-- Utilizando o componente do "input-property" renomeado. -->
+<!--
+<h1>Input Property</h1>
+<app-people [nome]="NamePerson"></app-people>
+-->
+
+<!-- Mostrando tipos de inicialização do contador -->
+
+<!-- Valor Fixo! -->
+<!-- <contador input_value="10"></contador> -->
+
+<!-- Por variável! -->
+<contador [input_value]="valorInicial"  (changeNumber)="onChangeNumber($event)"></contador>
+
+  

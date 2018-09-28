@@ -1,0 +1,47 @@
+<section class="property-binding">
+  <h1>{{ title }}</h1> <!-- O ideal e usar assim: {{ name }}-->
+  <article>
+    <p>Renderizando a interpolação.</p>
+    <h3>{{ getValue() }} </h3>
+    <p>Renderizando a interpolação por função.</p>
+    <h3>{{ 30 + 6 }} </h3>
+    <p>Renderizando a interpolação por expressão de soma.</p>
+    <h3>{{ booleanVal && getBoolean() }} </h3>
+    <p>Renderizando a interpolação por expressão com função.</p>
+  </article>
+
+  <h1>Property Binding</h1>
+  <article>
+    <!-- Forma 01 (Por Interpolação) -->
+    <img src="{{ urlImage }}" alt="Nature's Image">
+    
+    <!-- Forma 02 (Por Property Binding) -->
+    <img [src]="urlImage" alt="Nature's Image">
+
+    <!-- Forma 03 -->
+    <img bind-src="urlImage" alt="Nature's Image">
+  </article>
+</section>
+
+<h1>Change Class</h1>
+<h2>Select a class:</h2>
+<select #classe (change) = "0">
+  <option value="alert-success">Success</option>
+  <option value="alert-info">Info</option>
+  <option value="alert-warning">Warning</option>
+  <option value="alert-danger">Danger</option>
+</select>
+
+<div class="alert {{ classe.value }}" role="alert">
+  Text with selectionable class.  
+</div>
+
+
+<div class="alert" role="alert" [class.alert-success]="classe.value == 'alert-success'">Success!</div>
+<div class="alert" role="alert" [class.alert-info]="classe.value == 'alert-info'">Information.</div>
+<div class="alert" role="alert" [class.alert-warning]="classe.value == 'alert-warning'">Warning!</div>
+<div class="alert" role="alert" [class.alert-danger]="classe.value == 'alert-danger'">Danger!</div>
+
+<div class="alert alert-danger" role="alert" [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">
+    Style with condition.  
+</div>

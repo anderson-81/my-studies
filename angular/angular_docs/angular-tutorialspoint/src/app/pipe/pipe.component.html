@@ -1,0 +1,16 @@
+<h1>Pipe</h1>
+<b>{{text | uppercase}}</b><br />
+<b>{{text | lowercase}}</b>
+
+<h1>PIPE</h1>
+<p>{{ text | lowercase }}</p>
+<p>{{ text | uppercase }}</p>
+<p>{{ todayDate | date:'d/M/y' }}</p>
+<p>{{ todayDate | date:'shortTime' }}</p> <!-- Somente a hora atual. -->
+<p>{{ salary | currency }}</p>
+<p>{{ salary | currency:'BRL' }}</p>
+<p>{{ 454.78787814 | number: '3.3-4' }}</p>
+<b>{{ months | slice:2:6 }}</b>
+<p>{{ people | json }}</p>
+
+<p>{{ 49 | mySqrt }}</p>

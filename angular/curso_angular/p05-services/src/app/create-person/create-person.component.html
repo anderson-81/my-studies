@@ -1,0 +1,16 @@
+<h1>Create Person</h1>
+
+<ul>
+  <li *ngFor="let person of people">
+    {{person}}
+  </li>
+</ul>
+
+<div>
+  <h3>Create Person</h3>
+  <input type="text" #nameInput>
+  <button (click)="SavePerson(nameInput.value)">CREATE</button>
+</div>
+
+<app-receive-people-component></app-receive-people-component>
+ 

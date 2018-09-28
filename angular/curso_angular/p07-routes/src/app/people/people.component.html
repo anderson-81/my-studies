@@ -1,0 +1,10 @@
+<h3>People's Listing</h3>
+
+<h4>Page: {{ page }}</h4>
+
+<div class="collection">
+  <a [routerLink]="['/person',person.id]" routerLinkActivate="active" *ngFor="let person of people" class="collection-item">
+    {{ person.name }}
+  </a>
+  <button (click)="NextPage()">NEXT</button>
+</div>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10 - Services</title>
+	<script src="js/angular.min.js"></script>
+
+	<script>
+		//Create Module.
+		var app = angular.module('App', []);
+
+		app.service('SearchMovies', function($http, $q){
+
+			var myservice = this;
+
+			myservice.GetMovies = function(movie){
+				var result = $q.defer();
+				
+				$http({
+		            method: 'GET',
+		            url: "http://essearch.allocine.net/br/autocomplete?geo2=293125&q=" + movie,
+		            async: false
+		        }).then(function Success(response) {
+		        	var listResult = [];
+
+		        	//Mapeando os itens retornados
+		        	listResult = response.data.map(function(movieAPI){
+		        		return{
+		        			titulo: (movieAPI.title1) ? movieAPI.title1 : movieAPI.title2,
+		        			tituloOriginal: movieAPI.title2,
+		        			visualizacoes: movieAPI.viewcount,
+		        			urlCapa: movieAPI.thumbnail,
+		        			infoAdicional: movieAPI.metadata.map(function(oMovieMetadataAPI){
+		        				return{
+		        					legenda: oMovieMetadataAPI.property,
+		        					descricao: oMovieMetadataAPI.value
+		        				}
+		        			}) 
+		        		};
+		        	});
+
+		        	result.resolve(listResult);
+
+		        }, function Error(response) {
+		        	result.reject();
+		            alert("Error!");
+		        });
+
+		        return result.promise;
+			}	
+		});
+
+		//Create MovieController
+		app.controller('MovieController', function($scope, SearchMovies){
+			$scope.listMovie = [];
+			$scope.Search = function(){
+				SearchMovies.GetMovies($scope.textSearch).then(function(oList){
+					$scope.listMovie = oList;
+				});
+			}
+		});
+	</script>
+
+</head>
+<body ng-app="App">
+	<div ng-controller="MovieController">
+		<div>
+			<h1>Movie's Search</h1>
+			<input type="text" ng-model="textSearch">
+			<button ng-click="Search();">SEARCH</button>
+		</div>
+
+		<hr>
+
+		<div ng-show="listMovie.length > 0">
+			<h1>Movie's List</h1>
+			<table>
+				<tr ng-repeat="movie in listMovie">
+					<td><img src="{{movie.urlCapa}}" alt=""></td>
+					<td>{{movie.titulo}}</td>
+					<td>{{movie.tituloOriginal}}</td>
+					<td>{{movie.visualizacoes}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
