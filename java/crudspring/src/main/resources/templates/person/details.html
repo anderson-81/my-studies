@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>List</title>
+    </head>
+    <body>
+        <h1>Details</h1>
+        <table>
+            <tr>
+                <td><b>ID</b></td>
+                <td><span th:text="${person.id}"></span></td>
+            </tr>
+            <tr>
+                <td><b>NAME</b></td>
+                <td><span th:text="${person.name}"></span></td>
+            </tr>
+            <tr> 
+                <td><b>BIRTHDAY</b></td>
+                <td><span th:text="${person.birthday}"></span></td>
+            </tr>
+            <tr> 
+                <td><b>SALARY</b></td>
+                <td><span th:text="${person.salary}"></span></td>
+            </tr>
+        </table>
+        
+        <h3>Cars</h3>
+        <table>
+            <tr>
+                <th><b>MODEL</b></th>
+                <th><b>PLATE</b></th>
+                <th><b>SELECT</b></th>
+            </tr>
+            <tr th:each="car : ${cars}">
+                <td><span th:text="${car.model}"></span></td>
+                <td><span th:text="${car.plate}"></span></td>
+                <td><a th:href="@{'/person/' + ${person.id} + '/car/' + ${car.id} + '/delete'}">DELETE</a></td>
+            </tr>
+        </table>
+        
+        <a th:href="@{'/person/' + ${person.id} + '/car/create'}">CREATE</a>
+    </body>
+</html>

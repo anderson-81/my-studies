@@ -1,0 +1,22 @@
+<div class="col-md-12">
+	<div class="form-group">
+		
+	</div>
+	<h1>Index</h1>
+<% @articles.each do |article| %>
+	<h3><%= article.title %></h3>
+	<p><%= article.text %></p>
+	<p><%= link_to "Selecionar", controller: "articles", action: "show", id: article.id %></p>
+	<hr>
+<% end %>
+
+
+<%= link_to 'New Article', new_article_url %>
+
+</div>
+
+
+
+
+
+

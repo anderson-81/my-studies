@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>List</title>
+    </head>
+    <body>
+
+    <th:block th:include="person/messagevalidation"></th:block>
+
+    <h1>List</h1>
+    <table>
+        <th>
+        <td><b>NAME</b></td>
+        <td><b>SELECT</b></td>
+    </th>
+    <tr th:each="person : ${people}">
+        <td><span th:text="${person.name}"></span></td>
+        <td><a th:href="@{'/person/' + ${person.id}}">SELECT</a></td>
+        <td><a th:href="@{'/person/' + ${person.id} + '/delete'}">DELETE</a></td>
+
+    </tr>
+</table>
+<a href="/person/create">CREATE</a>
+</body>
+</html>

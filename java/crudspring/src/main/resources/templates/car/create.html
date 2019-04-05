@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Create</title>
+    </head>
+    <body>
+            <h1>Person</h1>
+            <table>
+                <tr>
+                    <td><b>ID</b></td>
+                    <td><span th:text="${person.id}"></span></td>
+                </tr>
+                <tr>
+                    <td><b>NAME</b></td>
+                    <td><span th:text="${person.name}"></span></td>
+                </tr>
+            </table>
+
+        <form method="POST">
+            <h1>Create car</h1>
+            <label>Model:</label>
+            <input type="text" name="model"/>
+            <label>Plate:</label>
+            <input type="text" name="plate"/>
+            <button type="submit">CREATE</button>
+        </form>
+
+        <a th:href="@{'/person/'}">BACK</a>
+    </body>
+</html>

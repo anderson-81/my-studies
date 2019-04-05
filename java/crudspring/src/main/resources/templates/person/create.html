@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Create</title>
+    </head>
+    <body>
+        <h1>Create</h1>
+
+        <form action="/person/save" method="POST">
+            <label>Name:</label>
+            <input type="text" name="name"/>
+            <label>Salary:</label>
+            <input type="text" name="salary"/>
+            <label>Birthday:</label>
+            <input type="text" name="birthday" value="November 12, 1981"/>
+            <button type="submit">CREATE</button>
+        </form>
+    </body>
+</html>
