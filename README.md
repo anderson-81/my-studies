@@ -7,6 +7,8 @@ Git Repository where I keep the code from my various studies or concepts's revie
 * Project developed using the concepts learned in [**React**](https://github.com/anderson-81/my-studies/tree/master/react).
 ## [Typescript](https://github.com/anderson-81/my-studies/tree/master/typescript/typescript-studies)
 * Codes developed using the concepts learned in [**Typescript**](https://github.com/anderson-81/my-studies/tree/master/typescript/typescript-studies).
+## [Scala](https://github.com/anderson-81/my-studies/tree/master/scala/tutorialspoint)
+* Codes developed using the concepts learned in [**Scala**](https://github.com/anderson-81/my-studies/tree/master/scala/tutorialspoint).
 ## [Java](https://github.com/anderson-81/my-studies/tree/master/java)
 * Projects developed using the concepts learned in [**Java**](https://github.com/anderson-81/my-studies/tree/master/java).
 ## [Rails](https://github.com/anderson-81/my-studies/tree/master/rails)
