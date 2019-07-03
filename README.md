@@ -13,8 +13,10 @@ Git Repository where I keep the code from my various studies or concepts's revie
 * Codes developed using the concepts learned in [**Scala**](https://github.com/anderson-81/my-studies/tree/master/scala/tutorialspoint).
 ## [Java](https://github.com/anderson-81/my-studies/tree/master/java)
 * Projects developed using the concepts learned in [**Java**](https://github.com/anderson-81/my-studies/tree/master/java).
-## [Rails](https://github.com/anderson-81/my-studies/tree/master/rails)
-* Projects developed using the concepts learned in [**Rails**](https://github.com/anderson-81/my-studies/tree/master/rails).
+## [Ruby](https://github.com/anderson-81/my-studies/tree/master/ruby)
+* Codes developed using the concepts learned in [**Ruby**](https://github.com/anderson-81/my-studies/tree/master/ruby).
+## [Python](https://github.com/anderson-81/my-studies/tree/master/python)
+* Codes developed using the concepts learned in [**Python**](https://github.com/anderson-81/my-studies/tree/master/python).
 ## [AngularJS](https://github.com/anderson-81/my-studies/tree/master/angularjs)
 * Codes developed using the concepts learned in [**AngularJS**](https://github.com/anderson-81/my-studies/tree/master/angularjs).
 ## [Perl](https://github.com/anderson-81/my-studies/tree/master/perl/PerlStudies)

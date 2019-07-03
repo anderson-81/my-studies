@@ -1,0 +1,14 @@
+<Pessoas>
+	<pessoa>
+		<codigo>111</codigo>
+		<nome>Anderson</nome>
+	</pessoa>
+	<pessoa>
+		<codigo>222</codigo>
+		<nome>Mara</nome>
+	</pessoa>
+	<pessoa>
+		<codigo>333</codigo>
+		<nome>Adriana</nome>
+	</pessoa>
+</Pessoas>

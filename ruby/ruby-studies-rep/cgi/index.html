@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script src="jquery-3.1.1.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$("#btnEnviar").click(function(event) {
+				
+				var codigo = $("#codigo").val();
+				var nome = $("#nome").val();
+
+				$.post('ruby.cgi', {codigo:codigo, nome:nome}, function(data, textStatus, xhr) {
+					$("#myDiv").html(data);
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<p>Código:</p>
+	<p><input type="text" id="codigo" value=""></p>
+	<p>Nome:</p>
+	<p><input type="text" id="nome" value=""></p>
+	<input type="button" value="Enviar" id="btnEnviar">
+	<div id="myDiv" style="background-color:yellow">
+	</div>
+</body>
+</html>
