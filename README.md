@@ -9,8 +9,6 @@
 * Projects developed using the concepts learned in [**Angular**](https://github.com/anderson-81/my-studies/tree/master/angular).
 ## [AngularJS](https://github.com/anderson-81/my-studies/tree/angularjs)
 * Codes developed using the concepts learned in [**AngularJS**](https://github.com/anderson-81/my-studies/tree/master/angularjs).
-## [AngularJS](https://github.com/anderson-81/my-studies/tree/master/angularjs)
-* Codes developed using the concepts learned in [**AngularJS**](https://github.com/anderson-81/my-studies/tree/master/angularjs).
 ## [EcmaScript](https://github.com/anderson-81/my-studies/tree/ecmascript)
 * Codes developed using the concepts learned in [**EcmaScript**](https://github.com/anderson-81/my-studies/tree/master/delphi).
 ## [NodeJS](https://github.com/anderson-81/my-studies/tree/nodejs)
