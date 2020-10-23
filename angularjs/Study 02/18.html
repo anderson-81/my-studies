@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dependency Injection</title>
+    <script src="assets/angular.min.js"></script>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="AppController">
+      <p>{{text}}</p>
+      <p>{{result}}</p>
+      <p>{{pi}}</p>
+    </div>
+  </body>
+
+  <script>
+    var app = angular.module("app", []);
+
+    // Injetando valor: transmitir valores ao controlador durante a
+    // fase de configuração (a fase de configuração ocorre quando
+    // o AngularJS é inicializado:
+
+    app.value("textHello", "Hello, World!");
+
+    /*
+        O provedor é usado internamente pelo AngularJS para criar serviços, fábrica, etc. durante a
+        fase de configuração.
+        O script a seguir pode ser usado para criar o MathService que
+        criamos anteriormente.
+    */
+
+    app.config(function ($provide) {
+      $provide.provider("CalcService", function () {
+        this.$get = function () {
+          var service = {};
+          service.sum = function (num1, num2) {
+            return num1 + num2;
+          };
+          return service;
+        };
+      });
+    });
+
+    // Injetando contante?
+    app.constant("pi", 3.14159);
+
+    // Injetando 'textHello' ao controller:
+    app.controller("AppController", function (
+      $scope,
+      textHello,
+      CalcService,
+      pi
+    ) {
+      $scope.text = textHello;
+      $scope.result = CalcService.sum(10, 3);
+      $scope.pi = pi;
+    });
+
+    // Service e Factory são utilizados com o conceito de injeção de dependencias
+  </script>
+</html>

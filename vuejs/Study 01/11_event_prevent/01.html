@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event and Prevent</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <div>
+                <h1>Fora do Formulário:</h1>
+                <h1 v-text="text"></h1>
+                <input type="text" v-model="name">
+                <button @click="add('Anderson', $event)">Add</button>
+            </div>
+
+            <form>
+                <h1>Formulário:</h1>
+                <h1 v-text="text"></h1>
+                <input type="text" v-model="name">
+                <button @click="addform('Anderson', $event)">Add</button>
+            </form>
+
+            <form v-on:submit="addform('Anderson', $event)">
+                <h1>Formulário Submit:</h1>
+                <h1 v-text="text"></h1>
+                <input type="text" v-model="name">
+                <button click="submit">Add</button>
+            </form>
+
+            <!-- Opcionalmente ... -->
+
+            <form v-on:submit.prevent="addprevent('Anderson')">
+                <h1>Formulário Submit com Prevent:</h1>
+                <h1 v-text="text"></h1>
+                <input type="text" v-model="name">
+                <button click="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: app,
+            data: {
+                name: '',
+                text: ''
+            },
+            methods:{
+
+                add(name, event){
+                    this.text = name;
+                    console.log(event);
+                },
+
+                addform(name, event){
+                    this.text = name;
+                    console.log(event);
+                    event.preventDefault(); // Não recarrega a página!
+                },
+
+                addsubmit(name){
+                    this.text = name;
+                    console.log(event);
+                    event.preventDefault(); // Não recarrega a página!
+                },
+
+                addprevent(name){
+                    this.text = name;
+                    console.log(event);
+                },
+
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+
+    <script>
+
+        var errors = [];
+
+        function validate() {
+
+            // Methods:
+            
+            function notEmpty(field) {
+                return field.length > 0;
+            }
+
+            function testRegex(field, regex) {
+                return regex.test(field);
+            }
+
+            // Fields:
+
+            if(notEmpty(document.myForm.id.value)){
+                if(testRegex(document.myForm.id.value, "/^\d+$/")){
+                    errors.push("ID is invalid.");
+                }
+            }else{
+                errors.push("ID is empty.");
+            }
+
+            if(!notEmpty(document.myForm.name.value)){
+                errors.push("Name is empty.");
+            }
+
+            // Errors:
+
+            if(errors.length == 0){
+                return true;
+            }else{
+                console.log(errors);
+                errors.forEach((error) => {
+                    // tag.append(" - " + error);
+                });
+                return false;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <form name="myForm" id="myForm" onsubmit="return(validate())">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <div id="errors">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="name">ID:</label></td>
+                <td><input type="text" name="id" id="id"></td>
+            </tr>
+            <tr>
+                <td><label for="name">Name:</label></td>
+                <td><input type="text" name="name" id="name"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="SUBMIT"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Directives</title>
+    <script src="assets/angular.min.js"></script>
+  </head>
+
+  <!-- Define o elemento raiz. -->
+  <body ng-app="myapp" >
+     <!-- Define inicialização de uma propriedade. --> 
+    <div ng-init="people = [{id:1,name:'Mary'},{id:2,name:'Carmen'},{id:3,name:'Anne'}]"></div>
+
+    <p>{{people}}</p>
+
+    <!-- Vincula a uma propriedade do escopo. -->
+    <input type="text" ng-model="name">
+
+    <!-- ng-repeat => Repete elementos HTML para cada item em uma coleção: -->
+    <h3>List:</h3>
+    <ul>
+        <li ng-repeat="person in people">{{person.id}} - {{person.name}}</li>
+    </ul>
+
+
+  </body>
+
+  <script>
+    angular
+      .module("myapp", [])
+      .controller("HelloController", function ($scope) {
+        console.log($scope);
+        // Propriedade do escopo
+        $scope.name = "Anderson";
+      });
+  </script>
+</html>

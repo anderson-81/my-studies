@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Routing</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Instalando o "roteador" para o Vue.js -->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <style>
+      ._active {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <router-link to="/route1" active-class="_active">HOME</router-link> |
+      <router-link v-bind:to="{path:'/route2'}">Registration</router-link> |
+      <router-link v-bind:to="{path:'/route2', query: {name: 'Anderson'}}"
+        >ArgLink</router-link
+      >
+      | <router-link v-bind:to="{path:'/route2'}" append>Append</router-link> |
+      <router-link v-bind:to="{path:'/route2'}" tag>Tag</router-link> |
+      <router-link v-bind:to="{path:'/route2'}" tag="span"
+        >Tag(Span)</router-link
+      >
+      |
+      <router-link v-bind:to="{path:'/route2'}" event="mouseover"
+        >MouseOver</router-link
+      >
+      <hr />
+      <router-view></router-view>
+    </div>
+
+    <script>
+      const Route1 = {
+        template:
+          "<div><h1>Home</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>",
+      };
+      const Route2 = {
+        template: `<div>
+            <h1>Registration</h1>
+            <p>Registration screen.</p>
+          </div>`,
+      };
+
+      const routes = [
+        { path: "/route1", component: Route1 },
+        { path: "/route2", component: Route2 },
+      ];
+
+      const router = new VueRouter({
+        routes,
+      });
+
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          title: "Routing",
+          name: "",
+        },
+        methods: {
+          greeting: function () {
+            console.log("mhasgdhasghdas");
+          },
+        },
+        router,
+      });
+    </script>
+  </body>
+</html>

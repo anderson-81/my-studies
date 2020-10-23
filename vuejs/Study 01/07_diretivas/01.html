@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1>Logo</h1>
+        
+        <img v-bind:src="src" v-bind:title="title">
+        
+        <hr>
+        
+        <a v-bind:href="url">Vue.js</a>
+        
+        <hr>
+        
+        <p v-text="'Texto simples!'"></p>
+        
+        <hr>
+        
+        <p v-text="text"></p>
+        
+        <hr>
+        
+        <div v-text="'Texto na DIV!'"></div>
+        
+        <hr>
+
+        <div v-html="tag"></div>
+        
+        <hr>
+    </div>
+
+    <script>
+        new Vue({
+            el: app,
+            data: {
+                msg: 'Hello, World!',
+                src: 'logo.png',
+                title: 'Logo do Vue.js',
+                url: 'https://vuejs.org/',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                tag: '<h1>My Tag!</h1>'
+            }
+        });
+    </script>
+</body>
+</html>

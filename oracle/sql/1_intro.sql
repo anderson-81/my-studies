@@ -1,0 +1,3 @@
+-- Instalação do Oracle
+-- Versão: 11g
+-- Utilização do "Conceitos básicos do Oracle"

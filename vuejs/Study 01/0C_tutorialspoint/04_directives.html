@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Directives</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <br />
+      <div v-customdiv></div>
+      <div v-customdivparam="{color:'green'}"></div>
+
+       <ul>
+           <li v-for="item in lista">{{item | tofilter }}</li>
+       </ul>
+    </div>
+
+    <script>
+      Vue.directive("customdiv", {
+        bind(elemento, binding, vnode) {
+          elemento.style.border = "2px solid black";
+          elemento.style.width = "200px";
+          elemento.style.height = "200px";
+          elemento.style.background = "red";
+        },
+      });
+
+      Vue.directive("customdivparam", {
+        bind(elemento, binding, vnode) {
+          elemento.style.border = "2px solid black";
+          elemento.style.width = "100px";
+          elemento.style.height = "100px";
+          elemento.style.background = binding.value.color;
+        },
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Directives",
+          lista: [0,1,2,3,4,5,6,7,8,9]
+        },
+        filters: {
+          tofilter: function (value) {
+            return (value % 2 == 0) ? value : 'X';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

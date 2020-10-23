@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O que é $mount</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app1">
+      <!-- <h1>{{msg}}</h1> -->
+    </div>
+
+    <div>
+      <button onclick="load(1)">ENGLISH</button>
+      <button onclick="load(2)">PORTUGUÊS</button>
+    </div>
+
+    <script>
+      function load(opc) {
+        opc == 1 ? app1.$mount("#app1") : app2.$mount("#app1");
+      }
+
+      const app1 = new Vue({
+        // el: "#app1", // Será carregado dinamicamente com $mount.
+        data: {
+          msg: "Hello, World!",
+        },
+        template: '<h1 style="color: red;">{{msg}}</h1>',
+      });
+
+      const app2 = new Vue({
+        // el: "#app1", // Será carregado dinamicamente com $mount.
+        data: {
+          msg: "Olá, Mundo!",
+        },
+        template: '<h1 style="color: blue;">{{msg}}</h1>',
+      });
+    </script>
+  </body>
+</html>

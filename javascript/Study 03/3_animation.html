@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+
+    <style>
+        .block{
+            background-color:red;
+            width:300px;
+            height:300px;
+        }
+    </style>
+
+    <script>
+
+        var div = null;
+
+        function Initial(){
+            div = document.getElementById("block");
+            block.style.position= 'relative'; 
+            block.style.left = '0px'; 
+            block.style.top = '0px'; 
+        }
+
+        function moveToRight(){
+            div.style.left = (parseInt(div.style.left) + 50) + 'px';
+        }
+
+        function moveToLeft(){
+            div.style.left = (parseInt(div.style.left) - 50) + 'px';
+        }
+
+        function moveToUp(){
+            div.style.top = (parseInt(div.style.top) - 50) + 'px';
+        }
+
+        function moveToDown(){
+            div.style.top = (parseInt(div.style.top) + 50) + 'px';
+        }
+
+        window.onload = Initial;
+    </script>
+</head>
+<body>
+    <div id="block" class="block"></div>
+    <button onclick="moveToLeft();">LEFT</button>
+    <button onclick="moveToRight();">RIGHT</button>
+    <button onclick="moveToUp();">UP</button>
+    <button onclick="moveToDown();">DOWN</button>
+</body>
+</html>

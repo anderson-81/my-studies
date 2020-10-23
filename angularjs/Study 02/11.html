@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML DOM</title>
+    <script src="assets/angular.min.js"></script>
+  </head>
+  <body ng-app="app" ng-init="hide = false;">
+    <div ng-controller="AppController">
+      <!-- Desabilitando -->
+      <button ng-disabled="true">CLICK</button>
+
+      <br />
+
+      <!-- ng-show -->
+      <h1 ng-show="condition">Hello, World!</h1>
+      <button ng-click="condition = true">CLICK</button>
+
+      <br />
+
+       <!-- ng-hide -->  
+      <button ng-hide="hide" ng-click="hide = true">HIDE</button>
+
+      <br />
+    </div>
+  </body>
+  <script>
+    var app = angular.module("app", []);
+    app.controller("AppController", function ($scope) {});
+  </script>
+</html>

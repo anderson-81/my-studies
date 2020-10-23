@@ -1,0 +1,3 @@
+-- Instalação do compilador.
+-- Instalação do editor.
+    -- Visual Studio Code com Lua Debug (Marketplace: actboy168).

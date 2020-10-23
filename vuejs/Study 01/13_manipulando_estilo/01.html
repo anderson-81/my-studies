@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binding Keyup</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      label {
+        font-weight: bold;
+      }
+
+      button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Adicionando pessoas:</h1>
+      <ul>
+        <li
+          v-for="person in people"
+          @click="show($event)"
+          style="background: white;"
+        >
+          {{person}}
+        </li>
+      </ul>
+      <button v-on:click="clear()">CLEAR</button><br /><br />
+      <label for="tempname">Name:</label>
+      <div>
+        <input type="text" v-model="name" @keyup.enter="add()" />
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: app,
+        data: {
+          name: "",
+          people: [],
+        },
+        methods: {
+          add() {
+            if (this.name != "") {
+              this.people.push(this.name);
+              this.name = "";
+            }
+          },
+
+          clear() {
+            confirm("Do you want clear?") ? (this.people = []) : null;
+          },
+
+          show(event) {
+            var element = event.target;
+
+            // Pegando dados:
+            alert(element.textContent.trim());
+
+            // Colocando fundo no nome:
+            if (element.style.background == "white") {
+              event.target.style = "background: red";
+            } else {
+              event.target.style = "background: white";
+            }
+
+            // Dados sobre o evento disparado:
+            console.log(event);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

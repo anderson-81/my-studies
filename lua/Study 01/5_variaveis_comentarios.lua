@@ -1,0 +1,1 @@
+-- Comentário sobre variáveis.

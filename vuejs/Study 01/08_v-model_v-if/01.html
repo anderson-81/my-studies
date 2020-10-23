@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .img{
+            width:50%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{name}}</h1>
+        <p><input type="text" v-model="name" class="img"></p>
+        <hr>
+        <div>
+           <div v-if="opc == 1">
+               <img :src="logo1" :alt="alt" class="img">
+           </div>   
+           <div v-else-if="opc == 2">
+                <img :src="logo2" :alt="alt" class="img">
+            </div>   
+            <div v-else-if="opc == 3">
+                <img :src="logo3" :alt="alt">
+            </div>  
+            <div v-else>
+                <h1>Opção inválida.</h1>
+            </div>      
+        </div>
+        <p><input type="text" v-model="opc"></p>
+        <hr>
+        <div>
+            <h1>Status</h1>
+            <div v-if="status">
+                <h1 style="color:green;">Verdadeiro</h1>
+            </div>
+            <div v-else-if="status == false">
+                <h1 style="color:red;">Falso</h1>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <script>
+        new Vue({
+            el: app,
+            data: {
+                name: '',
+                opc: 2,
+                alt: '',
+                logo1: 'images/logo1.png',
+                logo2: 'images/logo2.png',
+                logo3: 'images/logo3.png',
+                alt: '',
+                status: false
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Include</title>
+    <script src="assets/angular.min.js"></script>
+  </head>
+
+  <body>
+    <div ng-app="app" ng-controller="AppController">
+      <div ng-include="'pages/list.htm'"></div>
+    </div>
+  </body>
+
+  <script>
+    angular.module("app", []).controller("AppController", function ($scope) {
+      $scope.people = [
+        { id: 1, name: "John" },
+        { id: 2, name: "Mary" },
+        { id: 3, name: "Anne" },
+        { id: 4, name: "Jason" },
+        { id: 5, name: "Taylor" },
+        { id: 6, name: "Carmen" },
+        { id: 7, name: "Jeniffer" },
+      ];
+    });
+  </script>
+</html>

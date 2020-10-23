@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulando classes CSS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <style>
+      .red{
+          color:red;
+      }
+
+      .green{
+          color:green;
+      }
+
+      .blue{
+          color:blue;
+      }
+
+      .orange{
+          color:orange;
+      }
+  </style>
+  <body>
+
+    <div id="app">
+        <p v-bind:class="classe">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+    
+        <div style="text-align: right;">
+            <input @click="tocolor($event)" type="radio" name="color" id="red">Red | 
+            <input @click="tocolor($event)" type="radio" name="color" id="blue">Blue | 
+            <input @click="tocolor($event)" type="radio" name="color" id="green">Green | 
+            <input @click="tocolor($event)" type="radio" name="color" id="orange">Orange
+        </div>
+    </div>
+   
+    <script>
+        new Vue({
+            el: app,
+            data: {
+                classe: '',
+            },
+            methods:{
+                tocolor(event){
+                    this.classe = event.target.id.trim();
+                }
+            }
+        })
+    </script>
+  </body>
+</html>

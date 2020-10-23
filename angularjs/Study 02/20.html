@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internationalization</title>
+    <script src="assets/angular.min.js"></script>
+    <script src="assets/angular-locale_pt-br.js"></script>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="AppController">
+      <p>{{ date | date }}</p>
+      <p>{{ salary | currency }}</p>
+      <p>{{ num | number }}</p>
+    </div>
+  </body>
+
+  <script>
+    var app = angular.module("app", []);
+    app.controller("AppController", function ($scope) {
+      $scope.date = new Date();
+      $scope.salary = 5432.11;
+      $scope.num = 123.11;
+    });
+  </script>
+</html>

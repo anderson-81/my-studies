@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interligações de Classe e Estilo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+      .style1 {
+        color: green;
+      }
+      .style2 {
+        color: red;
+      }
+      button {
+        cursor: pointer;
+      }
+      .myclass{
+          background-color: green;
+          color: yellow;
+      }
+      .foreground-color{
+        color: yellow;
+      }
+      .background-color{
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <div id="app1">
+      <!--
+        <h1 v-bind:class="{'style1': opc1, 'style2': opc2}">{{message}}</h1>
+        <button @click="toggle">TOGGLE</button>
+        -->
+      <Component01 />
+    </div>
+
+    <div id="app2">
+      <!--
+        <h1 v-bind:class="[opc1 ? 'style1' : 'style2']">{{message}}</h1>
+        <button @click="toggle">TOGGLE</button>
+        -->
+      <Component02 />
+    </div>
+
+    <div id="app3">
+        <h1 v-bind:style="{color:mycolor, 'background-color':myback}">Style Inline!</h1>
+        <h2 v-bind:class="myclass">Setting CSS!</h2>
+
+        <h3>Lista de Cor:</h3>
+        <ul>
+            <li v-for="color in colors" v-bind:key="color.id">{{color.id}}{{color}}</li>
+        </ul>
+
+        <h3 v-bind:class='[fcolor, bcolor]'>Array color!!!</h3>
+
+        <!-- Exibindo tag mediante condicional: -->
+        <template>
+          <p v-show="num > 0">Número positivo!</p>
+          <div v-if="num > 0">
+            <h1>Número maior que zero!</h1>
+          </div>
+          <div v-else-if="num == 0">
+            <h1>Número igual a zero!</h1>
+          </div>
+          <div v-else>
+            <h1>Número menor que zero!</h1>
+          </div>
+        </template>
+
+        <button v-on:click="show">Alert</button>
+        <button v-on:click.once="show">Alert</button>
+
+        <br>
+        <h4>ENTER</h4>
+        <input type="text" v-model="name" v-on:keyup.enter="greeting">
+        <br>
+        <h4>SPACE</h4>  
+        <input type="text" v-model="name" v-on:keyup.space="greeting">
+        <br>
+        <h4>a</h4>  
+        <input type="text" v-model="name" v-on:keyup.65="greeting">
+
+        <br>
+
+        <componente-prop atributo="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."></componente-prop>
+
+        <div v-html="tag">
+        </div>
+    </div>
+
+    <script>
+      /*
+        var app1 = new Vue({
+            el: "#app1",
+            data: {
+                message: "Hello, World!",
+                opc1: true,
+                opc2: false,
+            },
+            methods:{
+                toggle(){
+                    this.opc1 = !this.opc1;
+                    this.opc2 = !this.opc2;
+                }
+            }
+        });
+
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                message: "Hello, World!",
+                opc1: true,
+                opc2: false,
+            },
+            methods:{
+                toggle(){
+                    this.opc1 = !this.opc1;
+                    this.opc2 = !this.opc2;
+                }
+            }
+        });
+        */
+
+      Vue.component('componente-prop', {
+        props: ['atributo'],
+        template: '<p>{{atributo}}</p>'
+      });
+
+      Vue.component("Component01", {
+        data() {
+          return {
+            message: "Hello, World!",
+            opc1: true,
+            opc2: false,
+          };
+        },
+        template:
+          "<div>" +
+          "<h1 v-bind:class=\"{'style1': opc1, 'style2': opc2}\">{{message}}</h1>" +
+          '<button @click="toggle">TOGGLE</button>' +
+          "</div>",
+        methods: {
+          toggle() {
+            this.opc1 = !this.opc1;
+            this.opc2 = !this.opc2;
+          },
+        },
+      });
+
+      Vue.component("Component02", {
+        data() {
+          return {
+            message: "Hello, World!",
+            opc1: true,
+            opc2: false,
+          };
+        },
+        template:
+          "<div>" +
+          "<h1 v-bind:class=\"[opc1 ? 'style1' : 'style2']\">{{message}}</h1>" +
+          '<button @click="toggle">TOGGLE</button>' +
+          "</div>",
+        methods: {
+          toggle() {
+            this.opc1 = !this.opc1;
+            this.opc2 = !this.opc2;
+          },
+        },
+      });
+
+      const app1 = new Vue({
+        el: "#app1",
+      });
+
+      const app2 = new Vue({
+        el: "#app2",
+      });
+
+      const app3 = new Vue({
+        el: "#app3",
+        data: {
+            mycolor: 'red',
+            myback: 'yellow',
+            myclass: 'myclass',
+            colors: ['green', 'yellow', 'white', 'blue', 'red'],
+            fcolor: 'foreground-color',
+            bcolor: 'background-color',
+            num: -1,
+            name: '',
+            tag: '<p>Tag data!</p>'
+        },
+        methods: {
+          show(){
+            alert("Hello, World!");
+          },
+          greeting(event){
+            alert(`Hello, ${this.name}!`);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Views</title>
+    <script src="assets/angular.min.js"></script>
+    <script src="assets/angular-route.min.js"></script>
+  </head>
+  <body ng-app="app">
+    <div>
+      <a href="#home">Home</a> | <a href="#contact">Contact</a> |
+      <a href="#about">About</a> |
+      <a href="#login">Login</a>
+    </div>
+
+    <!-- Interface para os templates: -->
+    <div ng-view></div>
+
+    <script type="text/ng-template" id="home.html">
+      <h1>{{title}}</h1>
+      <div ng-include="'pages/home.html'"></div>
+    </script>
+
+    <script type="text/ng-template" id="contact.html">
+      <h1>{{title}}</h1>
+      <div ng-include="'pages/contact.html'"></div>
+    </script>
+
+    <script type="text/ng-template" id="about.html">
+      <h1>{{title}}</h1>
+      <div ng-include="'pages/about.html'"></div>
+    </script>
+
+    <script type="text/ng-template" id="login.html">
+      <div ng-include="'pages/login.html'"></div>
+    </script>
+
+    <script>
+      var app = angular.module("app", ["ngRoute"]);
+
+      app.config([
+        "$routeProvider",
+        function ($routeProvider) {
+          $routeProvider
+            .when("/home", {
+              templateUrl: "home.html",
+              controller: "HomeController",
+            })
+            .when("/contact", {
+              templateUrl: "contact.html",
+              controller: "ContactController",
+            })
+            .when("/about", {
+              templateUrl: "about.html",
+              controller: "AboutController",
+            })
+            .when("/login", {
+              templateUrl: "login.html",
+              controller: "LoginController",
+            })
+            .otherwise({
+              redirectTo: "/home",
+            });
+        },
+      ]);
+
+      app.controller("HomeController", function ($scope) {
+        $scope.title = "Home";
+        $scope.text =
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+      });
+
+      app.controller("ContactController", function ($scope) {
+        $scope.title = "Contact";
+      });
+
+      app.controller("AboutController", function ($scope) {
+        $scope.title = "About";
+      });
+
+      app.controller("LoginController", function ($scope) {});
+    </script>
+  </body>
+</html>

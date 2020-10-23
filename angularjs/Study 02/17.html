@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services</title>
+    <script src="assets/angular.min.js"></script>
+
+    <style>
+      .readonly {
+        background-color: #c1b8ab;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="AppController">
+      <table>
+        <tr>
+          <td><input type="text" ng-model="sum1" ng-change="sum()" /></td>
+          <td align="center">+</td>
+          <td><input type="text" ng-model="sum2" ng-change="sum()" /></td>
+          <td>=</td>
+          <td>
+            <input type="text" readonly class="readonly" ng-model="res1" />
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" ng-model="sub1" ng-change="sub()" /></td>
+          <td align="center">-</td>
+          <td><input type="text" ng-model="sub2" ng-change="sub()" /></td>
+          <td>=</td>
+          <td>
+            <input type="text" readonly class="readonly" ng-model="res2" />
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" ng-model="mlt1" ng-change="mlt()" /></td>
+          <td align="center">X</td>
+          <td><input type="text" ng-model="mlt2" ng-change="mlt()" /></td>
+          <td>=</td>
+          <td>
+            <input type="text" readonly class="readonly" ng-model="res3" />
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" ng-model="div1" ng-change="div()" /></td>
+          <td align="center">÷</td>
+          <td><input type="text" ng-model="div2" ng-change="div()" /></td>
+          <td>=</td>
+          <td>
+            <input type="text" readonly class="readonly" ng-model="res4" />
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" ng-model="mod1" ng-change="mod()" /></td>
+          <td align="center">%</td>
+          <td><input type="text" ng-model="mod2" ng-change="mod()" /></td>
+          <td>=</td>
+          <td>
+            <input type="text" readonly class="readonly" ng-model="res5" />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+
+  <script>
+    var app = angular.module("app", []);
+
+    // Criando uma Factory:
+    app.factory("CalcFactory", function () {
+      var factory = {};
+
+      factory.sum = function (num1, num2) {
+        return num1 + num2;
+      };
+
+      factory.sub = function (num1, num2) {
+        return num1 - num2;
+      };
+
+      factory.mlt = function (num1, num2) {
+        return num1 * num2;
+      };
+
+      factory.div = function (num1, num2) {
+        return num1 / num2;
+      };
+
+      factory.mod = function (num1, num2) {
+        return num1 % num2;
+      };
+
+      return factory;
+    });
+
+    // Criando um Service:
+    app.factory("CalcService", function () {
+      var factory = {};
+
+      factory.sum = function (num1, num2) {
+        return num1 + num2;
+      };
+
+      factory.sub = function (num1, num2) {
+        return num1 - num2;
+      };
+
+      factory.mlt = function (num1, num2) {
+        return num1 * num2;
+      };
+
+      factory.div = function (num1, num2) {
+        return num1 / num2;
+      };
+
+      factory.mod = function (num1, num2) {
+        return num1 % num2;
+      };
+
+      return factory;
+    });
+
+    app.controller("AppController", function ($scope, CalcService) {
+      $scope.sum = function () {
+        $scope.res1 = CalcService.sum(
+          parseFloat($scope.sum1),
+          parseFloat($scope.sum2)
+        );
+      };
+
+      $scope.sub = function () {
+        $scope.res2 = CalcService.sub(
+          parseFloat($scope.sub1),
+          parseFloat($scope.sub2)
+        );
+      };
+
+      $scope.mlt = function () {
+        $scope.res3 = CalcService.mlt(
+          parseFloat($scope.mlt1),
+          parseFloat($scope.mlt2)
+        );
+      };
+
+      $scope.div = function () {
+        $scope.res4 = CalcService.div(
+          parseFloat($scope.div1),
+          parseFloat($scope.div2)
+        );
+      };
+
+      $scope.mod = function () {
+        $scope.res5 = CalcService.mod(
+          parseFloat($scope.mod1),
+          parseFloat($scope.mod2)
+        );
+      };
+    });
+  </script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>Listagem</h1>
+        <ul>
+            <Item v-for="person in people" :key="person.id" v-bind:person="person" v-bind:id="person.id" />
+        </ul>
+    </div>
+
+    <script>
+
+        Vue.component('Item', {
+            props: ['id','person'], 
+            template: '<li>{{id}} - {{person}}</li>'
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                people: [
+                    {id:1, name: 'Anderson'},
+                    {id:2, name: 'Lucy'},
+                    {id:3, name: 'Anne'},
+                    {id:4, name: 'Ava'},
+                    {id:5, name: 'Tiffany'},
+                    {id:6, name: 'Paula'},
+                    {id:7, name: 'Fernanda'},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

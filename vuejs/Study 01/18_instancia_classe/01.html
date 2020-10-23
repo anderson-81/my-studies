@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instância de Classe</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+
+    <div id="app1">
+      <h1>{{msg}}</h1>
+    </div>
+    
+    <div id="app2">
+      <h1>{{msg}}</h1>
+      <button onclick="change()">CHANGE 01</button> <!-- funciona dentro ou fora de um escopo. -->
+      <button @click="change()">CHANGE 02</button>
+    </div>
+
+    <script>
+
+      let message = 'Message';
+
+      const app1 = new Vue({
+        el: "#app1",
+        data: {
+          msg: `${message} 1`
+        }
+      });
+
+      const app2 = new Vue({
+        el: "#app2",
+        data: {
+          msg: `${message} 2`
+        },
+        methods: {
+          change(){
+            // msg = 'Changed!'; => Precisa chamar o objeto com atributo, como abaixo.
+            alert('Alterando por método interno.');
+            app1.msg = 'Intra 1';
+            app2.msg = 'Intra 2';
+            console.log('interno...');
+          }
+        }
+      });
+
+      function change(){
+        // msg = 'Changed!'; => Precisa chamar o objeto com atributo, como abaixo.
+        alert('Alterando por função externa.');
+        app1.msg = 'Extern 1';
+        app2.msg = 'Extern 2';
+        console.log('externo...');
+      }
+
+    </script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,12 @@
+Anotações:
+
+Instalando session:
+     npm install express-session --save
+
+Redirecionando:
+     res.redirect('/path') 
+Obs: Diretório pré-configurado
+
+Consultar a documentação sobre esses módulos.
+     express-session
+     body-parser

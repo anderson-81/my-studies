@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <title>Mixins</title>
+  </head>
+  <body>
+    <h1>Mixins</h1>
+    <div id="app1">
+      <h4>{{title}}</h4>
+    </div>
+    <div id="app2">
+      <h4>{{title}}</h4>
+    </div>
+
+    <script>
+      var mymixin = {
+        methods: {
+          hello: function () {
+            alert("Hello, World!");
+          },
+          ola: function () {
+            alert("Olá, mundo!");
+          },
+        },
+      };
+
+      var vm1 = new Vue({
+        el: "#app1",
+        data: {
+          title: "Element 01",
+        },
+        mixins: [mymixin],
+      });
+
+      var vm2 = new Vue({
+        el: "#app2",
+        data: {
+          title: "Element 02",
+        },
+        mixins: [mymixin],
+      });
+
+      vm1.hello();
+      vm2.ola();
+    </script>
+  </body>
+</html>

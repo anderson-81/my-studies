@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        b{
+            color:blue;
+        }
+
+        img{
+            width:20%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>Lista de Pessoas</h1>
+        <div v-for="person in people">
+            <div><b>ID:</b> {{person.id}}</div>
+            <div><b>Name:</b> {{person.name}}</div>
+            <div><b>Salary:</b> {{person.salary}}</div>
+            <div><b>Birthday:</b> {{person.birthday}}</div>
+            <div><b>Status:</b> {{person.status}}</div>
+            <hr>
+        </div>
+        <h1>Lista de Imagens</h1>
+        <div v-for="image in images">
+            <img :src="image">
+        </div>
+
+        <h1>Lista de Cores</h1>
+        <p v-for="color in colors">
+            {{color}}
+        </p>
+
+        <!-- imprimindo com index-->
+        <p v-for="(color, index) in colors">
+            {{index + ' - ' + color}}
+        </p>
+
+        <ul>
+            <li v-for="(color, index) in colors">{{index + 1}} - {{color}}</li>
+        </ul>
+
+        <h1>Listagem:</h1>
+        <ul>
+            <div v-for="person in people">
+                <li v-for="(value, key, index) in person">
+                    <b>{{key}}:</b> {{value}}
+                </li>
+                <hr>
+            </div>
+            
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: app,
+            data: {
+                people: [
+                    {id: 1, name: 'Anderson', salary: 3000.00, birthday: new Date(1981,10,12), status: true},
+                    {id: 2, name: 'Anne', salary: 2000.00, birthday: new Date(1980,01,01), status: true},
+                    {id: 3, name: 'Tiffany', salary: 1500.00, birthday: new Date(1987,08,15), status: false},
+                ],
+                images: ['images/logo1.png', 'images/logo2.png', 'images/logo3.png'],
+                colors: ['green', 'yellow', 'blue', 'white', 'red']
+            }
+        });
+    </script>
+</body>
+</html>

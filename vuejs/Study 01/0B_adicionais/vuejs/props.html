@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uso do Props</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+      .img-style {
+        height: 150px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <img v-bind:src="logo" alt="" v-bind:class="style" />
+      <div>
+        <div v-for="publication in publications">
+          <Publication
+            v-bind:title="publication.title"
+            v-bind:edited="publication.edited"
+            v-bind:author="publication.author"
+            v-bind:published="publication.published"
+            v-bind:edited="publication.edited"
+            v-bind:text="publication.text"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      Vue.component("Publication", {
+        props: ["title", "published", "edited", "text", "author"],
+        template: `
+                <div>
+                    <h1>{{title}}</h1>
+                    <p><b>Pubslished:</b> {{published}} <span v-if="edited != ''"> | <b>Updated:</b> {{edited}}</span></p>
+                    <p><b>Author:</b> {{author}}</p>
+                    <p>{{text}}</p>
+                    <hr>
+                </div>
+            `,
+      });
+
+      const app = new Vue({
+        el: "#app",
+        data: {
+          logo: "logo.png",
+          style: "img-style",
+          publications: [
+            {
+              title: "Publication 07",
+              published: "03/06/2020",
+              edited: "",
+              text:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              author: "Author01",
+            },
+            {
+              title: "Publication 06",
+              published: "12/05/2020",
+              edited: "15/05/2020",
+              text:
+                "Sem fringilla ut morbi tincidunt augue interdum velit euismod in. Fames ac turpis egestas integer. Duis tristique sollicitudin nibh sit amet commodo. Nunc mattis enim ut tellus elementum. Egestas diam in arcu cursus euismod quis viverra nibh.",
+              author: "Author02",
+            },
+            {
+              title: "Publication 05",
+              published: "01/05/2020",
+              edited: "",
+              text:
+                "Purus in massa tempor nec feugiat nisl pretium. Bibendum est ultricies integer quis auctor elit sed vulputate. Tristique risus nec feugiat in fermentum posuere urna nec.",
+              author: "Author01",
+            },
+            {
+              title: "Publication 04",
+              published: "27/04/2020",
+              edited: "30/04/2020",
+              text:
+                "Fames ac turpis egestas sed tempus urna et pharetra. Ac feugiat sed lectus vestibulum. Diam sit amet nisl suscipit adipiscing. Consectetur adipiscing elit pellentesque habitant. Adipiscing elit duis tristique sollicitudin nibh sit amet. Fermentum dui faucibus in ornare quam.",
+              author: "Author02",
+            },
+            {
+              title: "Publication 03",
+              published: "15/04/2020",
+              edited: "16/04/2020",
+              text:
+                "Faucibus turpis in eu mi bibendum. Quam vulputate dignissim suspendisse in est ante. Tincidunt eget nullam non nisi est sit amet. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Neque sodales ut etiam sit. Pulvinar elementum integer enim neque.",
+              author: "Author03",
+            },
+            {
+              title: "Publication 02",
+              published: "30/03/2020",
+              edited: "",
+              text:
+                "Netus et malesuada fames ac. Adipiscing enim eu turpis egestas pretium aenean pharetra. Nullam ac tortor vitae purus faucibus. Turpis egestas maecenas pharetra convallis posuere morbi leo urna. Nec nam aliquam sem et tortor. ",
+              author: "Author04",
+            },
+            {
+              title: "Publication 01",
+              published: "01/02/2020",
+              edited: "",
+              text:
+                "Id leo in vitae turpis massa. Tempor id eu nisl nunc mi ipsum faucibus. Sapien faucibus et molestie ac feugiat sed. Amet tellus cras adipiscing enim. Tortor consequat id porta nibh. In cursus turpis massa tincidunt dui ut ornare. Netus et malesuada fames ac turpis egestas.",
+              author: "Author01",
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

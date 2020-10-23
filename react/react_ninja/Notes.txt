@@ -1,0 +1,5 @@
+Criar um projeto baseado num projeto github:
+
+npx create-react-app <NOME_DO_PROJETO>
+cd <NOME_DO_PROJETO>
+npm start (yarn start)

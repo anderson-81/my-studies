@@ -1,0 +1,1 @@
+-- Explicação sobre retorno de funções.

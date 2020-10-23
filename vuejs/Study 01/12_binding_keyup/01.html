@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binding Keyup</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      label {
+        font-weight: bold;
+      }
+
+      .h1-enter {
+        color: red;
+      }
+
+      .h1-space {
+        color: blue;
+      }
+
+      button{
+          cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-text="nameSubmit1" class="h1-enter"></h1>
+      
+      <!-- Alterando utilizando uso de teclas sem submit. -->
+      <label for="name1">Name:</label>
+      <div>
+        <input type="text" v-model="name1" v-on:keyup.enter="submit($event)" />
+      </div>
+      <hr>
+      <h1 v-text="nameSubmit2" class="h1-space"></h1>
+      <label for="name2">Name:</label>
+      <div>
+        <input type="text" v-model="name2" v-on:keyup.space="submit($event)" />
+      </div>
+
+      <hr>
+
+      <h1>Adicionando pessoas:</h1>
+      <p>{{people}} | <button v-on:click="clear()">CLEAR</button></p>
+      <label for="tempname">Name:</label>
+      <div>
+        <input type="text" v-model="tempname" v-on:keyup.enter="add()" />
+      </div>
+      
+
+    </div>
+
+    <script>
+      new Vue({
+        el: app,
+        data: {
+          name1: '',
+          nameSubmit1: '',
+          name2: '',
+          nameSubmit2: '',
+          tempname: '',
+          people: []
+        },
+        methods: {
+          submit(event) {
+            console.log(event);
+            this.nameSubmit1 = this.name1;
+            this.nameSubmit2 = this.name2;
+          },
+
+          add(){
+            this.people.push(this.tempname);
+            this.tempname = '';
+            //this.tempname.focus();
+          },
+
+          clear(){
+              confirm("Do you want clear?") ? this.people = [] : null; 
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

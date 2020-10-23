@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Computados</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{message}}</h1>
+    </div>
+
+    <script>
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                message: 'Hello, World!'
+            },
+            methods:{
+                show1(){
+                    alert("Hello, World!");
+                },
+                show2(){
+                    alert("Olá, Mundo!");
+                }
+            },
+            computed: {
+                getMessage: function(){
+                    return this.message;
+                },
+                now01: function(){
+                    return Date.now();
+                }
+            },
+            /*
+            watch: {
+                now02: function(){
+                    return Date.now();
+                }
+            }
+            */
+        });
+
+        vue.message = "Olá, mundo!";
+        // vue.show1();
+        // vue.show2();
+        // alert(vue.getMessage());
+
+        console.log(vue.getMessage);
+        console.log(vue.now01);
+        // console.log(vue.now02);
+
+        
+    </script>
+    
+</body>
+</html>

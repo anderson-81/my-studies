@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Vue.js 2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <Person v-for="person in people" :key="person.id" :person="person" />
+      </ul>
+
+      <h1 v-once>{{message}}</h1>
+      <button @click="change">change</button>
+      <!-- Não consegue alterar pois o h1 está com v-once. -->
+
+      <h1>{{getName}}</h1>
+    </div>
+
+    <script>
+      Vue.component("Person", {
+        template: `
+                <li @click="show()">{{getdata}}</li>
+            `,
+        props: ["person"],
+        methods: {
+          show: function () {
+            alert(this.person.name);
+          },
+        },
+        computed: {
+          getdata: function () {
+            return `${this.person.id} - ${this.person.name}`;
+          },
+        },
+      });
+
+      var people = [
+        { id: 1, name: "Anderson" },
+        { id: 2, name: "Adriana" },
+        { id: 3, name: "Anne" },
+        { id: 4, name: "Lucy" },
+        { id: 5, name: "Daphne" },
+        { id: 6, name: "Mara" },
+        { id: 7, name: "Michelle" },
+      ];
+
+      const app = new Vue({
+        el: "#app",
+        data: {
+          people: people, // declarado externamente!
+          message: "Hello, World!",
+          fname: 'Mary',
+          sname: 'Jane'
+        },
+        methods: {
+          change: function () {
+            this.message = "Olá mundo!";
+          },
+        },
+        computed: {
+          getName: function() {
+            return `${this.fname} ${this.sname}`;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

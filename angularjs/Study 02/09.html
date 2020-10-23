@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filter</title>
+    <script src="assets/angular.min.js"></script>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="AppController">
+      <!-- uppercase -->
+      <p>{{message | uppercase}}</p>
+      
+      <!-- lowercase -->
+      <p>{{message | lowercase}}</p>
+      
+      <!-- currency -->
+      <p>{{balance | currency}}</p>
+    <ul>
+        <!-- OrderBy -->
+        <li ng-repeat="person in people | orderBy:'name'">{{ person.id }} - {{ person.name }}</li>
+    </ul>
+
+    </div>
+  </body>
+  <script>
+    var app = angular.module("app", []);
+    app.controller("AppController", function ($scope) {
+      $scope.message = "Hello, World!";
+      $scope.balance = 5431.11;
+      $scope.people = [
+        { id: 1, name: "Mary" },
+        { id: 2, name: "Sara" },
+        { id: 3, name: "Anne" },
+        { id: 4, name: "Carmen" },
+      ];
+    });
+  </script>
+</html>

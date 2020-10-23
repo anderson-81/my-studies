@@ -1,0 +1,1 @@
+-- Descrição de um jogo com lampadas.

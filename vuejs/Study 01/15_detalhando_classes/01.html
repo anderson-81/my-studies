@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulando classes CSS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <style>
+    .red {
+      background-color: red;
+    }
+
+    .green {
+      background-color: green;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <p v-bind:class="{red: colors.red, green: colors.green}">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
+
+      <div style="text-align: right;">
+        <button @click="red($event)">RED</button> | 
+        <button @click="green($event)">GREEN</button> | 
+        <button @click="white($event)">WHITE</button>
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: app,
+        data: {
+          colors: { red: false, green: false },
+        },
+        methods: {
+          green(event) {
+            console.log("verde!");
+            this.colors.red = true;
+            this.colors.green = false;
+
+            console.log(this.colors);
+          },
+
+          red(event) {
+            this.colors.red = false;
+            this.colors.green = true;
+          },
+
+          white(event) {
+            this.colors.red = false;
+            this.colors.green = false;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

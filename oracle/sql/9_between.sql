@@ -1,0 +1,1 @@
+select * from person where salary not between 1500 and 2000 order by salary asc;

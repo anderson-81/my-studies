@@ -1,0 +1,3 @@
+Tutorial PL/SQL
+
+PL / SQL é uma combinação de SQL junto com os recursos procedimentais das linguagens de programação. Foi desenvolvido pela Oracle Corporation no início dos anos 90 para aprimorar os recursos do SQL.

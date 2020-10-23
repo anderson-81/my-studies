@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello, World!</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app1">
+      <h1>{{message1}}</h1>
+      <span v-bind:title="message2">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </span>
+      <h4>{{dateNow}}</h4>
+      <hr />
+      <h1>v-if</h1>
+      <p v-if="result">Opção válida.</p>
+      <hr />
+      <h1>v-for</h1>
+      <ul>
+        <li v-for="color in colors" :key="color.id">{{color}}</li>
+      </ul>
+      <hr />
+      <h1>Methods</h1>
+      <div>
+        <p>{{textMessage}}</p>
+        <button @click="setText()">SET</button>
+      </div>
+      <hr />
+      <h1>v-model</h1>
+      <div>
+        <h3>{{data}}</h3>
+        <input type="text" v-model="name" /><button
+          @click="createMessage(name)"
+        >
+          SET
+        </button>
+      </div>
+      <hr />
+      <hr />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app1",
+        data: {
+          message1: "Hello, World!",
+          message2: "Lorem Ipsum...",
+          dateNow: new Date().toLocaleString(),
+          result: true,
+          colors: ["yellow", "green", "blue", "white", "red"],
+          textMessage: "",
+          data: "",
+          name: "",
+        },
+        methods: {
+          setText() {
+            this.textMessage = "Hello, World!";
+          },
+          createMessage(name) {
+            console.log(name);
+            this.data = name;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

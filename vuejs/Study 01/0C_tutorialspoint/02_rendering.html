@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rendering</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      button {
+        cursor: pointer;
+      }
+
+      .class1 {
+        color: yellow;
+        background-color: green;
+      }
+
+      .class2 {
+        color: white;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <div v-if="show">
+        <h1>Hello, World!</h1>
+      </div>
+      <button @click="showHello">{{tbutton}}</button>
+
+      <!-- STYLE -->
+      <div>
+        <h1 v-bind:style="styleobj">STYLE</h1>
+      </div>
+
+      <!-- CLASSE -->
+      <div>
+        <h1 v-bind:class="classe">CLASSE</h1>
+      </div>
+      <button @click="changeStyle">TOGGLE</button>
+
+      <!-- v-for -->
+      <div>
+        <h1>Lista de Cores:</h1>
+        <ul>
+          <li v-for="item in lista">{{item}}</li>
+        </ul>
+        <h1>Lista de Cores com Indice:</h1>
+        <ul>
+          <li v-for="(v, k) in lista">{{k}} - {{v}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Rendering",
+          show: false,
+          tbutton: "SHOW",
+          classe: "class1",
+          styleobj: {
+            "background-color": "blue",
+            color: "white",
+          },
+          lista: ["green", "yellow", "blue", "white", "red"],
+        },
+        methods: {
+          showHello: function () {
+            this.show = !this.show;
+            this.tbutton = this.tbutton == "SHOW" ? "HIDE" : "SHOW";
+          },
+          changeStyle: function () {
+            this.classe = this.classe == "class1" ? "class2" : "class1";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+-- Comentário sobre uso de mais condições no mesmo if.

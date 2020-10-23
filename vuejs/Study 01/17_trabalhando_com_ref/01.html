@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trabalhando com REF</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .red {
+        background-color: red;
+      }
+      .green {
+        background-color: green;
+      }
+      .white {
+        background-color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p ref="firstParagraph">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
+      <div>
+        <button @click="green()">GREEN</button> | 
+        <button @click="red()">RED</button> | 
+        <button @click="white()">WHITE</button>
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: app,
+        data: {
+          classe: 'red',
+        },
+        methods: {
+          red() {
+            this.$refs.firstParagraph.style.background = 'red';
+          },
+          green() {
+            this.$refs.firstParagraph.style.background = 'green';
+          },
+          white() {
+            this.$refs.firstParagraph.style.background = 'white';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

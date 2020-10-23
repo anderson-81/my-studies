@@ -1,0 +1,104 @@
+declare
+	cont integer := 0;
+	---
+	n number;
+	---
+	x number := 0;
+	y number := 0;
+
+procedure ploop is
+begin
+	loop
+		dbms_output.put_line(cont);
+		if cont = 10 then
+				exit;
+		end if;
+		cont := cont + 1;
+	end loop;
+	dbms_output.put_line('Finalizado');
+end;
+
+------
+
+procedure pwhile is
+begin
+	while cont < 10 loop
+		dbms_output.put_line(cont);
+		cont := cont + 1;
+	end loop;
+end;
+
+------
+
+procedure pfor is
+begin
+	for n in 13..33 loop
+		dbms_output.put_line(n);
+	end loop;
+end;
+
+------
+
+procedure pfor_reverse is 
+begin
+	for n in reverse 13..33 loop
+		dbms_output.put_line(n);
+	end loop;
+end;
+
+------
+
+procedure pwhilenested is 
+begin
+	while x < 3 loop
+		while y < 4 loop
+			dbms_output.put_line('[' || x || ',' || y || '] = ' || (x + y));
+			y := y + 1;
+		end loop;
+		y := 0;
+		x := x + 1;
+	end loop;
+end;
+ 
+------
+
+procedure pcontinue is
+begin
+	while cont < 10 loop
+		if cont = 1 or cont = 3 or cont = 5 or cont = 7 or cont = 9 then
+			dbms_output.put_line('X');
+			cont := cont + 1;
+			continue;
+		end if;
+		dbms_output.put_line(cont);
+		cont := cont + 1;
+	end loop;
+end;
+
+------
+
+procedure pgoto is
+begin
+	<<loopstart>>
+	while cont < 10 loop
+		if cont = 7 then
+			cont := cont + 1;
+			GOTO loopstart;
+		end if;
+		dbms_output.put_line(cont);
+		cont := cont + 1;
+	end loop;
+end;
+
+-----------
+
+-- principal
+begin
+	ploop();
+	pwhile();
+	pfor();
+	pfor_reverse();
+	pwhilenested();
+	pcontinue();
+	pgoto();
+end;

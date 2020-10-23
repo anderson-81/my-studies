@@ -1,0 +1,1 @@
+select name || ' - ' || email as "Nome & Email" from person;

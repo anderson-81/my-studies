@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$watch</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+      label {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <div>
+        <label for="kilometers">Kilometers</label><br />
+        <input type="text" v-model="kilometers" name="kilometers" /><br />
+        <label for="kilometers">Meters</label><br />
+        <input type="text" v-model="meters" name="meters" /><br />
+      </div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          title: "$watch",
+          kilometers: 0,
+          meters: 0,
+        },
+        methods: {},
+      });
+
+      vm.$watch('kilometers', function (val) {
+        this.meters = val * 1000;
+      });
+
+      vm.$watch('meters', function (val) {
+        this.kilometers = val / 1000;
+      });
+    </script>
+  </body>
+</html>

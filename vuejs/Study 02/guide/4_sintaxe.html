@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instâncias</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .stylered{
+            border: 5px solid black;
+            background-color: red;
+            width:320px;
+            height: 200px;
+        }
+
+        .stylegreen{
+            border: 5px solid black;
+            background-color: green;
+            width:320px;
+            height: 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app1">
+        <h1 v-once>Não se altera.</h1>
+        <hr>
+        <p v-html="mystyle"></p>
+        <hr>
+        <div>
+            <!--
+            <h1 v-bind:class="{{classe}}"></h1><button @click="toggle">Toggle</button>
+            -->
+        </div>
+        <hr>
+        <a :href="url">Vue.js</a>
+
+        <button v-on:click="toAlert()">CLICK01</button><br>
+        <button :disabled="false" @[click]="toAlert">CLICK02</button><br>
+        <button @click="toAlert">CLICK03</button><br>
+    </div>
+
+    
+
+    <script>
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                text: '',
+                mystyle: '<p style="color:red">Minha tag com style.</p>',
+                //opc: true,
+                //stylegreen: false,
+                //classe: 'stylered',
+
+                // lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                url: 'https://br.vuejs.org/',
+                opc: true
+            },
+            methods: {
+                /*
+                toggle(){
+                    this.stylered = !this.stylered;
+                    this.stylegreen = !this.stylegreen;
+                    this.classe = this.stylered == true ? 'stylered' : 'stylegreen'; 
+                }
+                */
+
+                toAlert(){
+                    alert("Hello, World!");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

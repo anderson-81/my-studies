@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Componentes</title>
+
+    <!-- Declarando o Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Trabalhando com "this." -->
+      
+      <!-- PAINEL 01 -->
+      <painel></painel>
+
+      <!-- PAINEL 02 -->
+      <painel></painel>
+    </div>
+
+    <div id="app1">
+      <!-- Trabalhando com "this." -->
+      
+      <!-- PAINEL 01 -->
+      <painel></painel>
+
+      <!-- PAINEL 02 -->
+      <painel></painel>
+    </div>
+
+    <script>
+
+      Vue.component('painel', {
+        data(){
+          return {
+            titulo: 'Hello, World!'
+          }
+        },
+        template: `
+        <div>
+          <h1 style="color:red">{{titulo}}</h1>
+          <button @click='toAlert()'>ALERT</button>
+        </div>`,
+        methods: {
+          toAlert(){
+            this.titulo = 'Alerta de alguma coisa!';
+          }
+        }
+      });
+
+      const app = new Vue({
+        el: "#app",
+        data: {},
+      });
+
+      const app1 = new Vue({
+        el: "#app1",
+        data: {},
+      });
+    </script>
+  </body>
+</html>

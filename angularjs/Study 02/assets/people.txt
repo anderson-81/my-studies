@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Mary",
+    "email": "mary@hsagdhgs.com",
+    "salary": 4321.21,
+    "birthday": "01/01/2000",
+    "gender": "F"
+  },
+  {
+    "id": 2,
+    "name": "John",
+    "email": "john@hsagdhgs.com",
+    "salary": 3121.12,
+    "birthday": "23/04/1983",
+    "gender": "M"
+  },
+  {
+    "id": 3,
+    "name": "Sara",
+    "email": "sara@hsagdhgs.com",
+    "salary": 2421.44,
+    "birthday": "10/12/1990",
+    "gender": "F"
+  },
+  {
+    "id": 4,
+    "name": "Jason",
+    "email": "jason@hsagdhgs.com",
+    "salary": 1212.87,
+    "birthday": "14/09/1976",
+    "gender": "M"
+  },
+  {
+    "id": 5,
+    "name": "Anne",
+    "email": "anne@hsagdhgs.com",
+    "salary": 3111.99,
+    "birthday": "01/05/1979",
+    "gender": "F"
+  },
+  {
+    "id": 6,
+    "name": "Carmen",
+    "email": "carmen@dshgdsh.com",
+    "salary": 3111.99,
+    "birthday": "10/10/1980",
+    "gender": "M"
+  },
+  {
+    "id": 7,
+    "name": "Antony",
+    "email": "antony@dshgdsh.com",
+    "salary": 2764.17,
+    "birthday": "13/12/1984",
+    "gender": "M"
+  }
+]

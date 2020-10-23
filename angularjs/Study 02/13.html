@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+    <script src="assets/angular.min.js"></script>
+    <style>
+      input[type="text"] {
+        width: 700px;
+        font-size: 20px;
+      }
+
+      table {
+        display: table;
+        margin: 0 auto;
+        margin-top: 1%;
+      }
+
+      button {
+        width: 100px;
+        cursor: pointer;
+      }
+
+      body {
+        background-color: azure;
+      }
+
+      .error {
+        color: red;
+        font-size: 17px;
+      }
+
+      .input-cursor {
+        background-color: #f7f7bb;
+      }
+
+      .readonly {
+        background-color: #c7c3d1;
+      }
+    </style>
+  </head>
+  <body ng-app="app" ng-init="hide = false;">
+    <div ng-controller="FormController">
+      <form name="person" novalidate>
+        <table>
+          <tr>
+            <td><h1>Form</h1></td>
+          </tr>
+          <tr>
+            <td><label for="id">ID</label></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" class="readonly" readonly ng-model="person.id" /><br /><span
+                class="error"
+                >hdaskhdaskdashd</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td><label for="id">Name</label></td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="text"
+                class="input-cursor"
+                ng-model="name"
+              /><br />
+              <span class="error" ng-show="person.name.$error.required">Name is empty.</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="id">E-mail</label></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" ng-model="person.email" /><br />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="id">Salary</label></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" ng-model="person.salary"  /><br />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="id">Birthday</label></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" ng-model="person.birthday | date : 'dd/MM/yyyy'"  /><br />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="id">Gender</label></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text"  ng-model="person.gender" /><br />
+            </td>
+          </tr>
+          <tr>
+            <td><hr /></td>
+          </tr>
+          <tr>
+            <td>
+              <div align="right">
+                <button>RESET</button><button>ADD</button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
+  <script>
+    var app = angular.module("app", []);
+    app.controller("FormController", function ($scope) {
+      $scope.person = {
+        id: "",
+        name: "",
+        email: "",
+        salary: "",
+        birthday: "",
+        gender: "M",
+      };
+
+      $scope.reset = function () {
+        $scope.person = {
+          id: "1",
+          name: "",
+          email: "",
+          salary: "",
+          birthday: new Date().setFullYear(new Date().getFullYear() - 18),
+          gender: "M",
+        };
+      };
+
+      $scope.reset();
+    });
+  </script>
+</html>

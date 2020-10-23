@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controllers</title>
+    <script src="assets/angular.min.js"></script>
+  </head>
+  <body ng-app="myapp">
+    <div ng-controller="AppController">
+      <p>{{person.fname}}</p>
+      <p>{{person.lname}}</p>
+      <p>{{person.fullname()}}</p>
+      <p>{{person.toString()}}</p>
+
+     
+      <label for="">FirstName:</label>
+      <input type="text" name="person.fname" ng-model="person.fname">  
+      <label for="">LastName:</label> 
+      <input type="text" name="person.lname" ng-model="person.lname">
+    </div>
+
+    <script>
+      var app = angular
+        .module("myapp", [])
+        .controller("AppController", function ($scope) {
+          $scope.person = {
+            id: 123,
+            fname: "John",
+            lname: "Paul",
+            birthday: new Date(2000, 07, 01),
+            salary: 4321.11,
+
+            toString: function () {
+              var objPerson = $scope.person;
+              return (
+                objPerson.id +
+                " - " +
+                objPerson.fullname() +
+                " - " +
+                objPerson.birthday +
+                " - " +
+                objPerson.salary
+              );
+            },
+
+            fullname: function () {
+              var objPerson = $scope.person;
+              return objPerson.fname + " " + objPerson.lname;
+            },
+          };
+        });
+    </script>
+  </body>
+</html>

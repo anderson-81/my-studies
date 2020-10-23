@@ -1,0 +1,1 @@
+select to_char(avg(salary), '$9,999.99') media_salarial from person;

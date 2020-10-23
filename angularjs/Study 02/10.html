@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+    <script src="assets/angular.min.js"></script>
+    <style>
+        table, th, tr, td{
+            border:2px solid black;
+        }
+    </style>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="AppController">
+      <h1>Table</h1>
+      <table>
+        <thead>
+          <tr>
+            <th align="center">ID</th>
+            <th>NAME</th>
+            <th align="center">E-MAIL</th>
+            <th align="center">SALARY</th>
+            <th align="center">BIRTHDAY</th>
+            <th align="center">GENDER</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr ng-repeat="person in people">
+            <td align="center">{{person.id}}</td>
+            <td>{{person.name}}</td>
+            <td align="center">{{person.email}}</td>
+            <td align="center">{{person.salary | currency }}</td>
+            <td align="center">{{person.birthday | date: 'dd/MM/yyyy' }}</td>
+            <td align="center">{{person.gender | uppercase }}</td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+  <script>
+    var app = angular.module("app", []);
+    app.controller("AppController", function ($scope) {
+      $scope.people = [
+        {
+          id: 1,
+          name: "Mary",
+          email: "mary@hsagdhgs.com",
+          salary: 4321.21,
+          birthday: new Date(1975, 11 - 1, 19),
+          gender: "F",
+        },
+        {
+          id: 2,
+          name: "John",
+          email: "john@hsagdhgs.com",
+          salary: 3121.12,
+          birthday: new Date(1983, 05 - 1, 23),
+          gender: "M",
+        },
+        {
+          id: 3,
+          name: "Sara",
+          email: "sara@hsagdhgs.com",
+          salary: 2421.44,
+          birthday: new Date(1979, 12, 10),
+          gender: "F",
+        },
+        {
+          id: 4,
+          name: "Jason",
+          email: "jason@hsagdhgs.com",
+          salary: 1212.87,
+          birthday: new Date(1989, 09, 14),
+          gender: "M",
+        },
+        {
+          id: 5,
+          name: "Anne",
+          email: "anne@hsagdhgs.com",
+          salary: 3111.99,
+          birthday: new Date(1985, 05, 01),
+          gender: "F",
+        },
+        {
+          id: 6,
+          name: "Carmen",
+          email: "carmen@dshgdsh.com",
+          salary: 3111.99,
+          birthday: new Date(1980, 10, 10),
+          gender: "M",
+        },
+        {
+          id: 7,
+          name: "Antony",
+          email: "antony@dshgdsh.com",
+          salary: 2764.17,
+          birthday: new Date(1979, 12, 13),
+          gender: "M",
+        },
+      ];
+    });
+  </script>
+</html>

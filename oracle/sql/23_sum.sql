@@ -1,0 +1,1 @@
+select sum(salary) as "Somatório dos Salários" from person;

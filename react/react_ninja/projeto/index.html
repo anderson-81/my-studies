@@ -1,0 +1,104 @@
+<!-- Exemplo de como criar uma SINGLE-PAGE com rotas. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactJS</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      let HashRouter = ReactRouterDOM.HashRouter;
+      let NavLink = ReactRouterDOM.NavLink;
+      let Route = ReactRouterDOM.Route;
+
+      const NavBar = () => {
+        return (
+          <div>
+            <NavLink to="/home">HOME</NavLink> |{" "}
+            <NavLink to="/contact">Contact</NavLink> |{" "}
+            <NavLink to="/about">About</NavLink>
+            {/* Para controlar as rotas: */}
+            <Route path="/home" component={Home} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/about" component={About} />
+          </div>
+        );
+      };
+
+      const Home = () => {
+        return (
+          <div>
+            <h1>Home</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
+              dignissimos obcaecati voluptas unde maiores dolorem sit sunt
+              excepturi deserunt, consequuntur expedita nam soluta? Consectetur
+              repudiandae tenetur commodi ut amet iste.
+            </p>
+          </div>
+        );
+      };
+
+      const About = () => {
+        return (
+          <div>
+            <h1>About</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur 
+              iusto voluptates veniam magni. Corrupti voluptatum pariatur fuga ipsa 
+              repudiandae blanditiis sed est, eligendi earum veritatis labore fugiat 
+              sit nemo! Cupiditate?
+            </p>
+          </div>
+        );
+      };
+
+      const Contact = () => {
+        return (
+          <div>
+            <h1>Contact</h1>
+            <form>
+              <label>ID:</label>
+              <br />
+              <input type="text" />
+              <br />
+              <label>Name:</label>
+              <br />
+              <input type="text" />
+              <br />
+              <button>SUBMIT</button>
+            </form>
+          </div>
+        );
+      };
+
+      class App extends React.Component {
+        render() {
+          return (
+            <HashRouter>
+              <div>
+                <NavBar />
+              </div>
+            </HashRouter>
+          );
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{getcolors(4)}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: app,
+            data: {
+                colors: ['green', 'yellow', 'blue', 'white', 'red']
+            },
+            
+            //Utilizando o "methods":
+            methods: {
+                getcolors(index){
+                    console.log(this.colors[index]);
+                    return this.colors;
+                },
+                show(){
+                    alert('Hello, World!');
+                }
+            }
+        });
+    </script>  
+    
+   
+</body>
+</html>

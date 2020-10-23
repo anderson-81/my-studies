@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX</title>
+    <script src="assets/angular.min.js"></script>
+    <style>
+      table,
+      th,
+      tr,
+      td {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="AppController">
+      <h1>Table</h1>
+      <table>
+        <thead>
+          <tr>
+            <th align="center">ID</th>
+            <th>NAME</th>
+            <th align="center">E-MAIL</th>
+            <th align="center">SALARY</th>
+            <th align="center">BIRTHDAY</th>
+            <th align="center">GENDER</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr ng-repeat="person in people">
+            <td align="center">{{person.id}}</td>
+            <td>{{person.name}}</td>
+            <td align="center">{{person.email}}</td>
+            <td align="center">{{person.salary | currency }}</td>
+            <td align="center">{{person.birthday | date: 'dd/MM/yyyy' }}</td>
+            <td align="center">{{person.gender | uppercase }}</td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+  <script>
+    var app = angular.module("app", []);
+    app.controller("AppController", function ($scope, $http) {
+      var url = "assets/people.txt";
+
+      var people = {};
+      $http.get(url).success(function(response){
+          $scope.people = response;
+      })
+    });
+  </script>
+</html>

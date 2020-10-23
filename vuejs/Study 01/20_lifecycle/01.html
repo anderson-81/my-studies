@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Componentes</title>
+
+    <!-- Declarando o Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+    </div>
+
+    <script>
+
+      Vue.component('painel', {
+        data(){
+          return {
+            titulo: 'Hello, World!'
+          }
+        },
+        template: `
+        <div>
+          <h1 style="color:red">{{titulo}}</h1>
+          <button @click='toAlert()'>ALERT</button>
+        </div>`,
+        methods: {
+          toAlert(){
+            this.titulo = 'Alerta de alguma coisa!';
+          }
+        }
+      });
+
+      const app = new Vue({
+        // el: "#app", // declarado no final da instrução.
+        data: {
+          cont: 0
+        },
+        template: `<div><painel></painel><br><h1>{{cont}}</h1><button @click="toUpdate()">Update</button><br><button @click="toDestroy()">Destroy</button></div>`,
+        methods: {
+          toUpdate(){
+            this.cont += 1;
+          },
+          toDestroy(){
+            this.$destroy();
+          }
+        },
+        // lifecycle
+        beforeCreate(){
+          console.log('beforeCreate => Antes de criar tudo.');
+        },
+        created(){
+          console.log('created => Quando foi criado.');
+        },
+        beforeMount(){
+          console.log('beforeMount => Antes de montar tudo.');
+        },
+        mounted(){
+          console.log('mounted => Montou tudo.')
+        },
+        beforeUpdate(){
+          console.log('beforeUpdate => Antes de atualizar.');
+        },
+        updated(){
+          console.log('updated => Tudo atualizado.');
+        },
+        beforeDestroy(){
+          console.log('beforeDestroy => Antes de destruir.');
+        },
+        destroyed(){
+          console.log('destroyed => Tudo destruído.');
+        }
+        // lifecycle
+
+      }).$mount("#app"); // funciona do mesmo jeito que tivesse o "el".
+    
+    </script>
+  </body>
+</html>

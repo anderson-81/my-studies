@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <title>Render Function</title>
+  </head>
+  <body>
+    <div id="app1">
+      <h1>{{title}}</h1>
+      <!-- default -->
+      <htag></htag>
+      <!-- default -->
+
+      <htag>Hello, Anderson!</htag>
+
+      <!-- custom tag -->
+      <testcomponent :elementtype="'h3,green,25,h3tag'"
+        >Hello Roy</testcomponent
+      >
+      <!-- custom tag -->
+    </div>
+
+    <script>
+      Vue.component("htag", {
+        template: `
+          <h1><slot>Hello, World!</slot></h1>
+        `,
+      });
+
+      /* CUSTOM TAG */
+      Vue.component("testcomponent", {
+        render: function (createElement) {
+          var a = this.elementtype.split(",");
+          return createElement(
+            a[0],
+            {
+              attrs: {
+                id: a[3],
+                style: "color:" + a[1] + ";font-size:" + a[2] + ";",
+              },
+            },
+            this.$slots.default
+          );
+        },
+        props: {
+          elementtype: {
+            attributes: String,
+            required: true,
+          },
+        },
+      });
+      /* CUSTOM TAG */
+
+      new Vue({
+        el: "#app1",
+        data: {
+          title: "Render Function",
+        },
+      });
+    </script>
+  </body>
+</html>

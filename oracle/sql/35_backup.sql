@@ -1,0 +1,1 @@
+-- É mostrado como fazer um backup do banco pelo SQL Developer.

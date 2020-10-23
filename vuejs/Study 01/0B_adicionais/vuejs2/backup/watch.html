@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watchers</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+        <h1>Exemplo de Watch:</h1>
+        <input type="text" v-model="data">
+        <h1>{{getperson}}</h1>
+    </div>
+
+    <script>
+      
+      var url = 'https://raw.githubusercontent.com/apache/spark/master/examples/src/main/resources/people.json'; 
+
+      const app = new Vue({
+        el: "#app",
+        data: {
+            data: '',
+            people: ''
+        },
+        watch: {
+            // Relacionado ao campo (v-model):
+            data: function(newvalue, oldvalue){
+                console.log(oldvalue, newvalue)
+            }
+        },
+        methods: {
+            getperson: function(){
+                fetch(url).catch((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
+        }
+      });
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags</title>
+    <!-- Declarando o Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <!-- Não pode deixar a váriavel fora do elemento. -->
+    {{msg}}
+
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <p>{{ resposta ? 'Verdadeiro' : 'Falso' }}</p>
+
+        <p>{{colors}}</p>
+        <p>{{colors[4]}}</p>
+        <p>{{colors[0] + ' ' + colors[1]}}</p>
+
+        <p>{{person}}</p>
+        <p>Name: {{person.name}}</p>
+
+        <p>{{1 + 1}}</p>
+
+        <p>{{fun}}</p>
+        <p>{{fun()}}</p>
+        <p>{{sum(1,2)}}</p>
+        
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app', // ou el: app,
+            data: {
+                // string
+                msg: "Hello, World!",
+                // boolean
+                resposta: true,
+                
+                // array
+                colors: ['yellow', 'green', 'blue', 'white', 'red'],
+                
+                //json
+                person: {
+                    name: 'Anderson',
+                    status: true,
+                    salary: 4321.11,
+                    birthday: new Date(1981,10,12)
+                },
+
+                //functions
+                fun: () => {
+                    return 'Hello, World!'
+                },
+                sum: (num1, num2) => {
+                    return num1 + num2;
+                }
+
+            }
+        });
+    </script>
+</body>
+</html>
