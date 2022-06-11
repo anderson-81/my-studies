@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Include</title>
+    <script src="assets/angular.min.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="PersonController">
+
+    <div ng-include="'_partials/list.html'">
+    </div>
+    <div ng-include="'_partials/footer.html'">
+    </div>
+    <script>
+        const app = angular.module("app", []);
+        app.controller("PersonController", function ($scope, $http) {
+
+            const url = 'assets/people.json';
+            
+            $http.get(url).success(function(data){
+                $scope.people = data;
+            });
+           
+            $scope.year = `®${new Date().getFullYear()}`;
+        });
+    </script>
+</body>
+
+</html>

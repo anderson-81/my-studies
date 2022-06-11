@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New HTML elements</title>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+  </head>
+  <body>
+    <div id="el1"></div>
+    <script>
+      var ViewDemo = Backbone.View.extend({
+        tagName: "span",
+        className: "myclass",
+        id: "span1",
+        initialize: function () {
+            console.log(this.el)
+            console.log(this.$el)
+
+            // Anexando um texto:
+            this.el.append('Hello, World!')
+
+            //Colococando o elemento no HTML:
+            $("#el1").append(this.el)
+        },
+      });
+
+      $(document).ready(function () {
+        var viewDemo = new ViewDemo();
+      });
+    </script>
+  </body>
+</html>

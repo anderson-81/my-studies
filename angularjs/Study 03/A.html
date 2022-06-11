@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="assets/angular.min.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="AppController">
+
+    <button ng-disabled="true">Disabled</button><br>
+
+    <button ng-init="hide=false" ng-hide="hide" ng-click="hide = true">HIDE</button>
+
+    <h1 ng-init="toggle = true" ng-show="toggle">Hello, World!</h1>
+    <button ng-click="toggle = false">Hello</button>
+
+    <script>
+        const app = angular.module("app", []);
+        app.controller("AppController", function ($scope) {
+        });
+    </script>
+</body>
+
+</html>

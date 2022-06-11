@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configuração do ambiente</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var AppView = Backbone.View.extend({
+        // Elemento onde renderizar:
+        el: "#app",
+
+        // Configuração da renderização;
+        render: function () {
+          this.$el.html("Hello, World!");
+        },
+
+        // Iniciar renderizando a View:
+        initialize: function () {
+          this.render();
+        },
+      });
+
+      // Instanciar sem chamar métodos para exibir:
+      var appView = new AppView();
+    </script>
+  </body>
+</html>

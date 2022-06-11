@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections</title>
+  </head>
+  <body id="body">
+    <div id="app"></div>
+
+    <!-- Template externo -->
+    <script id="personTemplate" type="text/template">
+      <strong>Name: </strong> <%= name %> - <strong>Age: </strong> <%= age %>
+    </script>
+
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      //criando modelo:
+      var Person = Backbone.Model.extend({
+        defaults: {
+          name: "Anderson",
+          age: 38,
+        },
+        initialize: function () {
+          console.log("person Initialized!");
+        },
+        validate: function (attrs) {
+          console.log("Validate: " + JSON.stringify(attrs));
+          if (attrs.age < 0) {
+            return "Invalid age.";
+          }
+          if (!attrs.name) {
+            return "Empty name.";
+          }
+        },
+        toString: function () {
+          return `Name: ${this.get("name")} - Age: ${this.get("age")}`;
+        },
+      });
+
+      var PersonView = Backbone.View.extend({
+        tagName: "li",
+
+        template: _.template($("#personTemplate").html()),
+
+        initialize: function () {
+          this.render();
+        },
+
+        render: function () {
+          this.$el.html(this.template(this.model.toJSON()));
+        },
+      });
+
+      // Criando uma Collection:
+      var PersonCollection = Backbone.Collection.extend({});
+
+      // Instanciando uma Collection:
+      var pc1 = new PersonCollection();
+
+      // Adiciondo itens à Collection:
+      var p1 = new Person({ name: "Anne", age: 28 });
+      pc1.add(p1);
+
+      /**************/
+
+      // Instanciando uma Collection e adicionando item:
+      var pc2 = new PersonCollection([
+        { name: "Anne", age: 28 },
+        { name: "Lucy", age: 31 },
+      ]);
+
+      // Uma segunda forma de adicionar individualmente:
+      pc2.add(new Person({ name: "Carmen", age: 25 }));
+
+      console.log(pc2);
+
+      console.log(pc2.toJSON());
+
+      // Pegando itens numa posição e get num atributo.
+      console.log(pc2.at(1).get("name"));
+
+      // Setando valor para atributo de item numa posição
+      pc2.at(2).set("name", "Sarah");
+
+      console.log(pc2.at(2).get("name"));
+    </script>
+  </body>
+</html>

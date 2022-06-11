@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>External Template</title>
+  </head>
+  <body id="body">
+    <div id="app"></div>
+
+    <!-- Template externo -->
+    <script id="personTemplate" type="text/template">
+      <strong>Name: </strong> <%= name %> - <strong>Age: </strong> <%= age %>
+    </script>
+
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      //criando modelo:
+      var Person = Backbone.Model.extend({
+        defaults: {
+          name: "Anderson",
+          age: 38,
+        },
+        initialize: function () {
+          console.log("person Initialized!");
+        },
+        validate: function (attrs) {
+          console.log("Validate: " + JSON.stringify(attrs));
+          if (attrs.age < 0) {
+            return "Invalid age.";
+          }
+          if (!attrs.name) {
+            return "Empty name.";
+          }
+        },
+        toString: function () {
+          return `Name: ${this.get("name")} - Age: ${this.get("age")}`;
+        },
+      });
+
+      var PersonView = Backbone.View.extend({
+        tagName: "li",
+
+        // Adicionando um template externo:
+        // template: _.template($("#personTemplate").html()),
+
+        // Segunda forma de referenciar um template externo:
+        template: _.template($("#personTemplate").html()),
+
+        initialize: function () {
+          console.log("view Initialized.");
+
+          // Chamando a renderização da tag.
+          this.render();
+        },
+
+        render: function () {
+          // Setando valores para o template:
+          this.$el.html(this.template(this.model.toJSON()));
+        },
+      });
+
+      var p1 = new Person();
+      var pview1 = new PersonView({ model: p1 });
+      console.log(pview1.el); // exibindo a tag
+
+      // Renderizando numa <div></div> referenciado pelo id:
+      document.getElementById("app").append(pview1.el);
+
+      var p2 = new Person({ name: "Lucy", age: 25 });
+      var pview2 = new PersonView({ model: p2 });
+      console.log(pview2.el); // exibindo a tag
+
+      // Renderizando numa <div></div> referenciado pelo id:
+      document.getElementById("app").append(pview2.el);
+
+      var people = [p1,p2];
+
+      
+    </script>
+  </body>
+</html>

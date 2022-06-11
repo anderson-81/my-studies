@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View - f</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <div id="myLog"></div>
+
+    <div id="myVal">
+      <button id="button" data-test="">Click Here</button>
+    </div>
+
+    <script>
+      var myLog = $("#myVal");
+
+      var data = function (val) {
+        document.write(val);
+      };
+
+      var ViewDemo = Backbone.Model.extend({
+        el: $("#myVal"),
+
+        events: {
+          "click [data-test]": "myFunc1",
+        },
+
+        myFunc1: function () {
+            console.log('gdashgdjhasgdjhsjh')
+          data("Hello, World!");
+        },
+      });
+
+      var v = new ViewDemo();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body id="body">
+    <div id="app"></div>
+
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      //criando modelo:
+      var Person = Backbone.Model.extend({
+        defaults: {
+          name: "Anderson",
+          age: 38,
+        },
+        initialize: function () {
+          console.log("person Initialized!");
+        },
+        validate: function (attrs) {
+          console.log("Validate: " + JSON.stringify(attrs));
+          if (attrs.age < 0) {
+            return "Invalid age.";
+          }
+          if (!attrs.name) {
+            return "Empty name.";
+          }
+        },
+        toString: function () {
+          return `Name: ${this.get("name")} - Age: ${this.get("age")}`;
+        },
+      });
+
+      var PersonView = Backbone.View.extend({
+        tagName: "li",
+
+        // Criando template e incluindo tags:
+        template: _.template("<strong>Name: </strong> <%= name %> - <strong>Age: </strong> <%= age %>"),
+
+        initialize: function () {
+          console.log("view Initialized.");
+          
+          // Chamando a renderização da tag.
+          this.render();
+          
+        },
+        
+        render: function () {
+
+          // Setando valores para o template:
+          this.$el.html(this.template(this.model.toJSON()));
+
+        },
+      });
+
+      var p = new Person();
+      var pview = new PersonView({ model: p });
+      console.log(pview.el); // exibindo a tag
+
+      // Renderizando numa <div></div> referenciado pelo id:
+      document.getElementById("app").append(pview.el);
+    </script>
+  </body>
+</html>

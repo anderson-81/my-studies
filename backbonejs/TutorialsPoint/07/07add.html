@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections - add</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var Person = Backbone.Model.extend({
+        defaults: {
+          id: 0,
+          name: "",
+        },
+      });
+
+      var PersonCollection = Backbone.Collection.extend({
+        model: Person,
+        comparator: "name", // deve ser utilizado em conjunto com o sort()
+        parse: function (response, options) {
+          document.writeln("PARSE:<br>");
+          document.writeln("Option: " + JSON.stringify(options));
+          document.writeln("Response: " + JSON.stringify(response));
+        },
+      });
+
+      var people1 = new Person({ id: 1, name: "John" });
+
+      var people2 = new Person({ id: 2, name: "Mary" });
+
+      var people3 = new Person({ id: 3, name: "Carmen" });
+
+      var people4 = new Person({ id: 4, name: "Sarah" });
+
+      var pc = new PersonCollection();
+
+      // Adicionando itens a collection:
+      pc.add([people1, people2, people3, people4]);
+      document.write(pc.length + "<br>");
+
+      // Removendo item:
+      pc.remove([people3]);
+      document.write(pc.length + "<br>");
+
+      // Resetando a Collection:
+      pc.reset();
+      document.write(pc.length + "<br>");
+
+      // Adicionando novamente:
+      pc.add([people1, people2, people3, people4]);
+      document.write(pc.length + "<br>");
+
+      // Atualizando um item na collection:
+      //pc.set([people2, { id: 2, name: "Mary Anne" }]);
+      // Resultado da atualização:
+      //document.write(JSON.stringify(pc) + "<br>");
+
+      // Pegando um item pelo index:
+      var person = JSON.stringify(pc.get(2));
+      document.write(person + "<br>");
+
+      document.write(JSON.stringify(pc.at(3)) + "<br>");
+
+      // Utilizando o push para adicionar ao final:
+      var people5 = new Person({ id: 5, name: "Caroline" });
+      pc.push(people5);
+      document.write(pc.length + "<br>");
+
+      // removendo ultimo item da collection:
+      pc.pop();
+      document.write(pc.length + "<br>");
+
+      // Adicionando um item no inicio da collection:
+      var people6 = new Person({ id: 6, name: "Lucy" });
+      pc.unshift(people6);
+      document.write(JSON.stringify(pc) + "<br>");
+
+      // Utilizando o slice(inicio, fim)
+      var pslice = pc.slice(2, 4);
+      document.write(JSON.stringify(pslice) + "<br>");
+
+      // Sort
+      document.write(JSON.stringify(pc.sort()) + "<br>");
+
+      // pluck => retorna os itens exibindo somente um atributo selecionado:
+      document.write(JSON.stringify(pc.pluck("name")) + "<br>");
+
+      // where (todos)
+      var people7 = new Person({ id: 7, name: "Carmen" });
+      pc.unshift(people7);
+      document.write(JSON.stringify(pc.where({ name: "Carmen" })) + "<br>");
+
+      // findWhere (somente um)
+      document.write(JSON.stringify(pc.findWhere({ name: "Carmen" })) + "<br>");
+
+      // parse
+      pc.reset();
+      pc.add([people1, people2, people3, people4], { parse: true });
+
+      // clone
+      var person = new Person();
+      var pclone = pc.clone(person.get("name"));
+      document.write(JSON.stringify(pclone) + "<br>");
+    </script>
+  </body>
+</html>

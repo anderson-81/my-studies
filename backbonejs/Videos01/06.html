@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Views</title>
+  </head>
+  <body>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      // Criando modelo:
+      var Person = Backbone.Model.extend({
+        defaults: {
+          name: "Anderson",
+          age: 38,
+        },
+      });
+
+      // Criando uma View para o modelo anterior:
+      //    No modo default, é criado como uma div <div></div>.
+
+      var PersonView = Backbone.View.extend({
+        // Modificação para um <li></li>:
+        tagName: "li",
+
+        // Adicionando uma classe CSS:
+        className: "li-class",
+
+        // Adicionando um id para tag:
+        id: "some-li",
+
+        // Colocando um método de inicialização:
+        initialize: function () {
+          console.log("Initialize executado!");
+        },
+
+        // Colocando um método de renderização:
+        render: function () {
+          this.$el.html(this.model.get("name"));
+        },
+      });
+
+      function f01() {
+        var personView = new PersonView();
+
+        // Exibindo dados sobre a View:
+        console.log(personView);
+
+        // Elemento da View 01:
+        console.log(personView.el);
+
+        // Elemento da View 02:
+        console.log(personView.$el);
+      }
+
+      // Passando valor para a tag:
+      function f02() {
+        var person = new Person();
+
+        var personView = new PersonView({ model: person });
+
+        console.log(personView.$el);
+        console.log(personView.el);
+        personView.render();
+        console.log(personView.el);
+      }
+
+      f02();
+    </script>
+  </body>
+</html>

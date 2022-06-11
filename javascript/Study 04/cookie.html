@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie</title>
+    <script>
+
+
+        // window.location = "http://www.google.com.br"; 
+
+        function createcookie() {
+
+            document.cookie = "Name=Anderson;";
+
+            let cookies = document.cookie.split(";");
+
+            console.log(cookies.length);
+
+            console.log(cookies);
+
+            let name = "";
+
+            cookies.forEach((item) => {
+                name = item.replace("Name=", "");
+            })
+
+            alert(`Hello, ${name}!`);
+        }
+
+        function createcookieform() {
+
+            document.cookie = `Name=${document.frmCookie.name.value};`;
+
+            let cookies = document.cookie.split(";");
+
+            let name = "";
+
+            cookies.forEach((item) => {
+                name = item.replace("Name=", "");
+            })
+
+            alert(`Hello, ${name}!`);
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <input type="button" id="btnCookie1" name="btnCookie1" value="Cookie" onclick="createcookie();">
+    <br>
+    <form id="frmCookie" name="frmCookie">
+        <input type="text" name="name" id="name">
+        <input type="button" id="btnCookie2" name="btnCookie2" value="Cookie" onclick="createcookieform();">
+    </form>
+
+    <a href="javascript:void(javascript:alert('hello world!!'))">
+        Click here to do nothing
+    </a>
+    <br /><br /><br />
+    <a href="javascript:alert('hello');">Click here for an alert</a>
+</body>
+
+</html>

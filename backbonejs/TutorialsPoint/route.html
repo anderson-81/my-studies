@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotas</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var Route1 = Backbone.View.extend({
+        template:
+          "<h1>Home</h1><p>" +
+          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo" +
+          "ullam sunt, deleniti quasi voluptatem perspiciatis, autem quae" +
+          "a saepe quos exercitationem commodi perferendis veniam," +
+          "minima deserunt ipsam. Saepe, suscipit quo!</p>",
+
+        initialize: function () {
+          this.execute();
+        },
+
+        execute: function () {
+          this.$el.html(this.template);
+        },
+      });
+
+      var Route2 = Backbone.View.extend({
+        template:
+          "<h1>About</h1><p>" +
+          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo" +
+          "ullam sunt, deleniti quasi voluptatem perspiciatis, autem quae" +
+          "a saepe quos exercitationem commodi perferendis veniam," +
+          "minima deserunt ipsam. Saepe, suscipit quo!</p>",
+
+        initialize: function () {
+          this.execute();
+        },
+
+        execute: function () {
+          this.$el.html(this.template);
+        },
+      });
+
+      var Route3 = Backbone.View.extend({
+        template:
+          "<h1>Contact</h1>" +
+          "<form>" +
+          "<div>" +
+          '<input type="text" name="name" id="name" /><input type="submit" value="SUBMIT" />' +
+          "</div>" +
+          "</form>",
+
+        initialize: function () {
+          this.execute();
+        },
+
+        execute: function () {
+          this.$el.html(this.template);
+        },
+      });
+
+      var AppRouter = Backbone.Router.extend({
+        el: "#app",
+
+        routes: {
+          "route/1": "home",
+          "route/2": "about",
+          "route/3": "contact",
+        },
+
+        home: function () {
+          var route1 = new Route1();
+          $("#app").html(route1.el);
+        },
+
+        about: function () {
+          var route2 = new Route2();
+          $("#app").html(route2.el);
+        },
+
+        contact: function () {
+          var route3 = new Route3();
+          $("#app").html(route3.el);
+        },
+      });
+
+      var appRouter = new AppRouter();
+
+      Backbone.history.start();
+    </script>
+
+    <div>
+      <a href="#/route/1">Home</a> | <a href="#/route/2">About</a> |
+      <a href="#/route/3">Contact</a>
+    </div>
+
+    <div id="app"></div>
+  </body>
+</html>

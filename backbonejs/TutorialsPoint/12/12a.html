@@ -1,0 +1,38 @@
+Demonstração ao vivo
+<!DOCTYPE html>
+   <head>
+      <title>Utility Example</title>
+      <script src = "scripts/jquery-3.5.1.min.js" 
+         type = "text/javascript"></script>
+      
+      <script src = "scripts/underscore-min.js" 
+         type = "text/javascript"></script>
+      
+      <script src = "scripts/backbone-min.js" 
+         type = "text/javascript"></script>
+   </head>
+   
+   <body>
+      <script>
+         //It is reference to a last parsed verison of Backbone.js
+         this.Backbone = {
+            "Example for Backbone utility": true
+         };
+      </script>
+      
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+      <script type = "text/javascript">
+         //'Backbone.noConflict()' gives reference to a Backbone before last parsed 
+         //version of Backbone was loaded
+         var backboneParsed = Backbone.noConflict();
+
+         //It looks for the previous version and logs 'true' on the browser
+         document.write(Backbone["Example for Backbone utility"]);
+
+         //It displays the version of the Backbone.js contained in the new 
+         //'backboneParsed' namespace
+         document.write(backboneParsed.VERSION);
+      </script>
+      
+   </body>
+</html>

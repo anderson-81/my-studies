@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backbone Model</title>
+  </head>
+  <body>
+    <!-- Referenciando bibliotecas -->
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+
+    <script>
+      var Person = Backbone.Model.extend({
+        defaults: {
+          id: 123,
+          name: "Anderson",
+          salary: 5421.11,
+          status: true,
+          birthday: new Date(1900, 10, 12),
+        },
+        show: function () {
+          return `${this.get("id")} - ${this.get("name")} - ${this.get(
+            "birthday"
+          )}`;
+        },
+      });
+
+      var p = new Person();
+
+      // Setando valores:
+      p.set("name", "Anderson C.");
+
+      // Imprimindo atributo
+      console.log(p);
+
+      // Pegando atributo "defaults"
+      console.log(`Name: ${new Person().defaults.name}`);
+
+      // Pegando valores:
+      console.log(`Name: ${p.get("name")}`);
+
+      // Executando método
+      console.log(`${p.show()}`);
+
+      // toJSON
+      console.log(`${p.toJSON()}`);
+    </script>
+  </body>
+</html>

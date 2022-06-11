@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View - d</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <div id="myView">
+      <h1>Enter your text:</h1>
+      <input type="text" /><br /><br /><br />
+      <button>CLICK</button>
+    </div>
+
+    <div id="myApp"></div>
+
+    <script>
+      var ViewDemo = Backbone.View.extend({
+        events: {
+          "change input": "myMethod",
+
+          "click button": "toAlert",
+        },
+
+        initialize: function () {
+          console.log($("#myView"))
+          this.setElement($("#myView"));
+        },
+
+        myMethod: function () {
+          // Sobrescreve
+          document.write("My Method executed!");
+        },
+
+        toAlert: function () {
+          alert("Hello, World!");
+          // Sobrescreve
+          document.write("Click executed!");
+        },
+      });
+
+      var viewdemo = new ViewDemo();
+    </script>
+  </body>
+</html>

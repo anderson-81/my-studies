@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events (Collections)</title>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+  </head>
+  <body>
+    <script>
+      var Person = Backbone.Model.extend({
+        defaults: {
+          id: 1,
+          name: "Anderson",
+        },
+      });
+
+      var People = Backbone.Collection.extend({
+        model: Person,
+        bindEvent: function () {
+          this.on("change", function (model) {
+            console.log(`Register with ID=${model.get("id")} updated.`);
+          });
+
+          this.on("remove", function (model) {
+            console.log(`${model.get("name")} removed.`);
+          });
+
+          this.on("add", function (model) {
+            console.log(`${model.get("name")} added.`);
+          });
+        },
+        initialize: function () {
+          this.bindEvent();
+        },
+      });
+
+      $(document).ready(function () {
+        var person2 = new Person({ id: 2, name: "Carmen" });
+        var person3 = new Person({ id: 3, name: "Lucy" });
+        var people = new People();
+
+        people.add(person2);
+        people.add(person3);
+
+        // Adicionando:
+        document.write(JSON.stringify(people.toJSON()) + "<br>");
+
+        // get
+        document.write(JSON.stringify(people.get(2)) + "<br>"); // pelo ID
+        var carmen = people.get(2);
+        carmen.set({ name: "Sara" });
+
+        // 4 alterações:
+        var names = ["Jason", "Tiffany", "Anne"];
+        names.forEach((name) => {
+          carmen.set({ name: name });
+        });
+
+        people.remove(person3);
+
+        document.write(JSON.stringify(carmen) + "<br>"); // pelo ID
+      });
+    </script>
+  </body>
+</html>

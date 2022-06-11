@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="assets/angular.min.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="PersonController">
+    <h1>{{person.fullname()}}</h1>
+    <table>
+        <tr>
+            <td><label for="">First Name:</label></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="person.fname" id="person.fname" ng-model="person.fname"></td>
+        </tr>
+        <tr>
+            <td><label for="">Last Name:</label></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="person.lname" id="person.lname" ng-model="person.lname"></td>
+        </tr>
+        <tr>
+            <td align="right"><input type="button" name="btnClick" id="btnClick" value="CLICK"></td>
+        </tr>
+    </table>
+    <script>
+        const app = angular.module("app", []);
+        app.controller("PersonController", function($scope){
+            $scope.person = {
+                fname: 'Anderson',
+                lname: 'Conceição',
+                fullname: function(){
+                    return $scope.person.fname + " " + $scope.person.lname;
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>

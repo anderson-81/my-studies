@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Type</title>
+  </head>
+  <body>
+    <!-- Referenciando bibliotecas -->
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+
+    <!-- Primeiro exemplo -->
+    <script>
+      var Person = function (person) {
+        this.id = person.id;
+        this.name = person.name;
+        /*
+            this.show = function(){
+                console.log(`${this.id} - ${this.name}`)
+            }
+        */
+      };
+
+      Person.prototype.show = function () {
+        console.log(`${this.id} - ${this.name}`);
+      };
+
+      var person = new Person({
+        id: 123,
+        name: "Anderson",
+      });
+
+      person.show();
+    </script>
+  </body>
+</html>

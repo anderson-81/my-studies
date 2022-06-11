@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+    <script>
+        function redirect()
+        {
+            window.location = "https://www.duckduckgo.com";
+            console.log(navigator.appName + " " + navigator.appVersion + " " + navigator.language);
+        }
+
+        function settime()
+        {
+            document.getElementById("text").innerText = "You will be redirected to tutorialspoint.com main page in 3 seconds!"
+            setTimeout('redirect()', 3000);
+        }
+    </script>
+</head>
+<body>
+   <h3 id="text"></h3>
+   <input type="button" value="Redirect" onclick="settime()">
+</body>
+</html>

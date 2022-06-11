@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function setCookie() {
+            if (document.myform.name.value == "") {
+                alert("Enter some value!");
+                return;
+            }
+            document.cookie = "name=Anderson;name=Anderson;";
+            var allcookies = document.cookie;
+            cookiearray = allcookies.split(';');
+
+            for (var i = 0; i < cookiearray.length; i++) {
+                document.write("Hello, " + cookiearray[i].split('=')[1] + "!");
+            }
+            var now = new Date();  
+            document.cookie = "expires = " + now.toUTCString() + ";"  
+        }
+    </script>
+
+</head>
+
+<body>
+    <form action="" name="myform" id="myform">
+        <input type="text" name="name" id="name">
+        <input type="button" value="Cookie" onclick="setCookie();" style="cursor:pointer;">
+    </form>
+</body>
+
+</html>

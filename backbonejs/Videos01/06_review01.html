@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Revisao</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      //criando modelo:
+      var Person = Backbone.Model.extend({
+        defaults: {
+          name: "Anderson",
+          age: 38,
+        },
+        initialize: function () {
+          console.log("person Initialized!");
+        },
+        validate: function (attrs) {
+          console.log("Validate: " + JSON.stringify(attrs));
+          if (attrs.age < 0) {
+            return "Invalid age.";
+          }
+          if (!attrs.name) {
+            return "Empty name.";
+          }
+        },
+        toString: function () {
+          return `Name: ${this.get("name")} - Age: ${this.get("age")}`;
+        },
+      });
+
+      var PersonView = Backbone.View.extend({
+        tagName: "li",
+        className: "li-class",
+        id: "some-li",
+        initialize: function () {
+          console.log("view Initialized.");
+        },
+        render: function () {
+          console.log("render PersonView: " + JSON.stringify(this));
+          this.$el.html(this.model.toString());
+        },
+      });
+
+      var p1 = new Person();
+      console.log(p1);
+      console.log(`Name: ${p1.get("name")}`); // Pegando valor de atributo.
+      console.log(p1.toString());
+      p1.set({ name: "" }); // Setando sem validação!
+      console.log(p1);
+      p1.set({ age: -1 }, { validate: true }); // Setando com validação!
+      console.log(p1);
+
+      /* ------------------------------------------------- */
+
+      console.log("-------------------------------------------------");
+
+      var pview1 = new PersonView();
+
+      console.log("OBJECT:");
+      console.log(pview1);
+
+      console.log("TAG:");
+      console.log(pview1.el);
+
+      console.log("ELEMENT:");
+      console.log(pview1.$el);
+
+      console.log("-------------------------------------------------");
+
+      var pview2 = new PersonView({ model: p1 });
+
+      console.log("OBJECT:");
+      console.log(pview2);
+
+      console.log("TAG:");
+      console.log(pview2.el);
+
+      console.log("ELEMENT:");
+      console.log(pview2.$el);
+
+      pview2.render();
+
+      console.log(pview2.el);
+    </script>
+  </body>
+</html>

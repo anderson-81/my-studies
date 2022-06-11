@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      // Criando um modelo:
+      var Person = Backbone.Model.extend({
+        defaults: {
+          id: 123,
+          name: "Anderson",
+        },
+        initialize: function () {
+          document.write("Person initilializer!<br>");
+        },
+      });
+
+      // Criando collection e especificando um modelo:
+      var People = Backbone.Collection.extend({
+        model: Person, // Cria objeto Person e chama o initialize.
+        initialize: function () {
+          document.write("People initilializer!<br>");
+        },
+      });
+
+      // Instanciando collection:
+      var people = new People({});
+
+      // Exibindo collection com stringify:
+      document.write(JSON.stringify(people));
+
+      // toJSON => Retorna a cópia dos hash dos atributos de cada
+      // modelo na coleção usando o formato JSON.
+
+      $(() => {
+        var col2 = new People();
+
+        col2.set([
+          { id: 1, name: "Mary" },
+          { id: 2, name: "Sara" },
+          { id: 3, name: "Carmen" },
+        ]);
+
+        document.write(JSON.stringify(col2.toJSON()));
+      });
+
+      /*************************************************************/
+
+      
+
+
+    </script>
+
+  </body>
+</html>

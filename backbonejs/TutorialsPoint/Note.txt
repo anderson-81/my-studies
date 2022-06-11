@@ -1,0 +1,105 @@
+BackboneJS
+
+O BackboneJS é uma biblioteca JavaScript leve que permite desenvolver e estruturar 
+aplicativos do lado do cliente que são executados em um navegador da web. Ele oferece 
+a estrutura MVC que abstrai dados em modelos, DOM (Document Object Model) em visualizações 
+e vincula esses dois usando eventos. Este tutorial aborda a maioria dos tópicos necessários 
+para um entendimento básico do BackboneJS e para ter uma idéia de como ele funciona.
+
+A arquitetura do BackboneJS contém os seguintes módulos -
+
+    Solicitação HTTP
+    Roteador
+    Visão
+    Eventos
+    Modelo
+    Coleção
+    Fonte de dados
+
+
+Catalog of Built-in Events
+BackboneJS allows the use of global events wherever necessary in your application. It contains some of the built-in events with arguments as shown in the following table −
+
+S.No.	Events & Description
+1	
+"add"(model, collection, options)
+
+It used when a model is added to the collection.
+
+2	
+"remove"(model, collection, options)
+
+It removes a model from the collection.
+
+3	
+"reset"(collection, options)
+
+It is used to reset the collection content.
+
+4	
+"sort"(collection, options)
+
+It is used when a collection needs to resorted.
+
+5	
+"change"(model, options)
+
+It is used when changes are to be made to a model's attributes.
+
+6	
+"change:[attribute]"(model, value, options)
+
+It is used when there is an update in an attribute.
+
+7	
+"destroy"(model, collection, options)
+
+It fires when the model is destroyed.
+
+8	
+"request"(model_or_collection, xhr, options)
+
+It is used when a model or a collection starts requesting to the server.
+
+9	
+"sync"(model_or_collection, resp, options)
+
+It is used when a model or a collection is synced successfully with the server.
+
+10	
+"error"(model_or_collection, resp, options)
+
+It activates when there is an error in requesting to the server.
+
+11	
+"invalid"(model, error, options)
+
+When there is a fail in model validation, it returns invalid.
+
+12	
+"route:[name]"(params)
+
+When there is a specific route match, this event can be used.
+
+13	
+"route"(route,params)
+
+It is used when there is a match with any route.
+
+14	
+"route"(router, route, params)
+
+It is used by history when there is a match with any route.
+
+15	
+"all"
+
+It fires for all the triggered events by the passing event name as the first argument.
+
+
+
+
+
+
+
+

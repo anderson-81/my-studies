@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View - j</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var ViewDemo = Backbone.View.extend({
+        events: {
+          "click button": "delegateFunc",
+        },
+
+        el: "#app",
+
+        initialize: function () {
+          this.render();
+
+          // Removendo métodos do botão:
+          $(this.el).undelegate('button', 'click')
+        },
+
+        render: function () {
+          this.$el.html("<button>REMOVE</button>");
+        },
+
+        delegateFunc: function () {
+          // Remove uma exibição do DOM:
+          this.remove();
+          document.write("delegateFunc!!!!");
+        },
+      });
+
+      var viewDemo = new ViewDemo();
+
+      viewDemo.delegateEvents();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function writeCookie()
+        {
+            document.cookie = "name=" + escape(document.myform.name.value) + ";";
+        }
+
+        function readCookie()
+        {
+        }
+
+        function TestCookie()
+        {
+            writeCookie();
+            readCookie();
+        }
+
+        function Redirecionar()
+        {
+            window.location = "https://www.tutorialspoint.com";
+        }
+
+        function fvoid()
+        {
+            var a, b, c;
+            a = void(b = 18, c = 22);
+            document.writeln("a = " + a + " b =" + b + " c= " + c + " b + c = " + (b + c));
+        }
+
+        console.log(document.all);
+        console.log(document.getElementById("myform"));
+
+        function getBrowser()
+        {
+            var userAgent = navigator.userAgent;
+            console.log(userAgent);
+            console.log(navigator.vendor);
+            console.log(navigator);
+        }
+         
+    </script>
+</head>
+<body>
+    <form name="myform" id="myform" action="">
+        <input type="text" name="name" id="name">
+        <input type="button" value="Criar" onclick="TestCookie()" >
+    </form>
+
+    <button onclick="Redirecionar();">Redirecionar</button>
+
+    <a href="javascript:alert('Hello, World!')">Hello</a>
+    <a href="javascript:void(0)">Void(0)</a>
+
+    <button onclick="javascript:fvoid();">fvoid</button>
+
+    <button onclick="javascript:getBrowser();">Browser</button>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections - D</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var Person = Backbone.Model.extend({
+        sync: function (method, model, options) {
+          document.write(JSON.stringify(arguments));
+        },
+      });
+
+      var People = Backbone.Collection.extend({
+        model: Person,
+      });
+
+      var PersonView = Backbone.View.extend({
+        initialize: function () {
+          var people = new People();
+          // executando  método create
+          people.create({ id: 1, name: "John" }, { id: 2, name: "Mary" });
+        },
+      });
+
+      new PersonView();
+    </script>
+  </body>
+</html>

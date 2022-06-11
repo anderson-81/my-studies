@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View - e</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <div id="myApp"></div>
+
+    <script>
+      var MyModel = Backbone.Model.extend({
+        defaults: {
+          id: 123,
+          name: "Anderson",
+        },
+      });
+
+      var ViewDemo = Backbone.View.extend({
+        // Exibindo atributos:
+        initialize: function () {
+          document.write(JSON.stringify(this.model) + "<br>");
+          document.write(this.model.get("name") + "<br>");
+          document.write(this.tagName + "<br>");
+          document.write(this.className + "<br>");
+        },
+      });
+
+      var myModel = new MyModel();
+
+      // Utilizando atributos:
+      var viewdemo = new ViewDemo({
+        model: myModel,
+        className: "myClass",
+        tagName: "myTag",
+      });
+    </script>
+  </body>
+</html>

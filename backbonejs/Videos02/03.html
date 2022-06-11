@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model Attributes</title>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+  </head>
+  <body>
+    <script>
+      var ModelDemo = Backbone.Model.extend({
+        defaults: {
+          title: "ww8qyeuywuie dcgshdas",
+          text: "uUduws dshd dqfduqw dq7eqwe w.",
+        },
+        initialize: function () {},
+      });
+
+      $(document).ready(function () {
+        var modelDemo = new ModelDemo({
+          /*
+          title: "Lorem Ipsum",
+          text:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit." +
+            "Voluptate tempore in dicta assumenda exercitationem dolor iusto iure facere" +
+            "debitis explicabo at, officia magni architecto, ipsam rerum corrupti" +
+            "vel accusantium consequatur?",
+          */
+        });
+
+        modelDemo.set({ created: new Date() });
+
+        document.write(modelDemo.get("title") + "<br><br>");
+        document.write(modelDemo.get("text") + "<br><br>");
+        document.write(modelDemo.get("created"));
+      });
+    </script>
+  </body>
+</html>

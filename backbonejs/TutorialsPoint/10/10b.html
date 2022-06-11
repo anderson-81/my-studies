@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sync</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      /* emulateHTTP e emulateJSON */
+      Backbone.sync = function (method, model) {
+        document.write("Model: " + JSON.stringify(model) + "<br>");
+
+        //Alterando ID:
+        model.set("id", 1);
+      };
+
+      //If web server that doesn't support Backbone's REST/HTTP approach,
+      //then turn on 'Backbone.emulateHTTP'
+      Backbone.emulateHTTP = true;
+
+      //If web server can't handle requests encoded as application/json,
+      //then set the 'Backbone.emulateJSON' to true
+      Backbone.emulateJSON = true;
+
+      var Person = new Backbone.Model({
+        id: 123,
+        name: "Anderson",
+      });
+
+      // Salvando:
+      Person.save();
+
+      // Adicionando item ao "country":
+      Person.save({ country: "Brazil" });
+    </script>
+  </body>
+</html>

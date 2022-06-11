@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validating Model</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var Person = Backbone.Model.extend({
+        defaults: {
+          name: "Anderson",
+          age: 38,
+        },
+        validade: function (attrs) {
+          console.log(attrs);
+          if (attrs.age < 0) {
+            return "Invalid age.";
+          }
+
+          if (!attrs.name) {
+            return "Empty name.";
+          }
+        },
+        show: function () {
+          console.log(`${p.get("name")} - ${p.get("age")}`);
+        },
+      });
+
+      var p = new Person();
+
+      p.on("error", function (model, error) {
+        console.log(error);
+      });
+
+      p.set("name", "Anderson C.");
+      p.set("age", -1);
+
+      console.log(p);
+    </script>
+  </body>
+</html>

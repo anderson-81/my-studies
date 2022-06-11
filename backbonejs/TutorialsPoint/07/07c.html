@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections - C</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      Backbone.sync = function (method, model) {
+        document.write('tipo do método: ' + method);
+        document.write('<br><br>')
+        document.write('dados: ' + JSON.stringify(model));
+      };
+
+      var details = new Backbone.Collection({
+        title: "Lorem Ipsum",
+        text:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ut adipisci aliquid sunt? Ex repellat aut fugiat sunt? Quo magnam soluta iste consequatur! Incidunt earum ipsum fuga provident asperiores expedita?",
+      });
+      
+      details.fetch();
+    </script>
+  </body>
+</html>

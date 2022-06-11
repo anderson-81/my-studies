@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <script>
+        function sayHello()
+        {
+            alert("Hello, World!");
+        }
+
+        function createPerson()
+        {
+            var result = document.getElementById("name").value.length > 0 ? true : false;
+            if(result)
+            {
+                alert("Success!!!");
+            }
+            else
+            {
+                alert("Error!");
+            }
+        }
+
+        function over()
+        {
+            document.getElementById("div-mouse").className = "div-red";
+        }
+
+        function out()
+        {
+            document.getElementById("div-mouse").className = "div-green";
+        }
+    </script>
+
+    <style>
+        .div-green{
+            background-color:green;
+            width:200px;
+            height:200px;
+        }
+
+        .div-red{
+            background-color:red;
+            width:400px;
+            height:400px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" onclick="sayHello();" value="Say" >
+
+    <form onsubmit="return createPerson()" method="POST">
+
+        <input type="text" name="name" id="name">
+        <input type="submit" value="SUBMIT">
+    </form>
+    <br>
+    <br>
+    <div class="div-green" id="div-mouse" onmouseover="over()" onmouseout="out()">
+    </div>
+</body>
+</html>

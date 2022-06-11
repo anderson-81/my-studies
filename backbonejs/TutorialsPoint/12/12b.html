@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Utility Example</title>
+    <script
+      src="https://code.jquery.com/jquery-2.1.3.min.js"
+      type="text/javascript"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"
+      type="text/javascript"
+    ></script>
+  </head>
+
+  <body>
+    <script>
+      //The value specified for the variable '$' in the global scope
+      var $ = { version: "0.1.1", name: "Tutorialspoint" };
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"
+      type="text/javascript"
+    ></script>
+
+    <script type="text/javascript">
+      //Set the value for the variable after Backbone is loaded
+      Backbone.$ = { version: "1.1.2", name: "Tutorialspoint" };
+
+      //It displays the defined values in the JSON format
+      document.write(
+        "The values after loading Backbone are: ",
+        JSON.stringify(Backbone.$)
+      );
+    </script>
+  </body>
+</html>

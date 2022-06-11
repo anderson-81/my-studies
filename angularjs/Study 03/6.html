@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="assets/angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+    <h1 ng-init="people = [{id:1, name:'Anderson'},{id:2, name:'Lucy'},{id:3, name:'Sarah'}]">List 01:</h1>
+    <ul ng-repeat="person in people">
+        <li>{{person.id}} - {{person.name}}</li>
+    </ul>
+    <div ng-controller="PersonController">
+        <h1>List 02:</h1>
+        <ul ng-repeat="person in people">
+            <li>{{person.id}} - {{person.name}}</li>
+        </ul>
+    </div>
+    <script>
+        const app = angular.module("app", []);
+        app.controller("PersonController", function ($scope) {
+            $scope.people = [{ id: 1, name: 'Anne' }, { id: 2, name: 'Tiffany' }, { id: 3, name: 'Jason' }];
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events - stopListening</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var event01 = _.extend({ message: "Event 01!" }, Backbone.Events);
+      var event02 = _.extend({ message: "Event 02!" }, Backbone.Events);
+
+      var listenMe = function () {
+        document.write(this.message);
+      };
+
+      event02.listenTo(event01, "listenMe", listenMe);
+
+      // myVal2.trigger('listenMe') // Não acontece nada.
+
+      event01.trigger("listenMe");
+
+      event02.stopListening(event01, 'listenMe')
+
+      event01.trigger("listenMe");
+    </script>
+  </body>
+</html>

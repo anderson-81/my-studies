@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collection Views</title>
+  </head>
+  <body id="body">
+    <div id="app"></div>
+
+    <!-- Template externo -->
+    <script id="personTemplate" type="text/template">
+      <strong>Name: </strong> <%= name %> - <strong>Age: </strong> <%= age %>
+    </script>
+
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      //criando modelo:
+      var Person = Backbone.Model.extend({
+        defaults: {
+          name: "Anderson",
+          age: 38,
+        },
+        initialize: function () {
+          console.log("person Initialized!");
+        },
+        validate: function (attrs) {
+          //console.log("Validate: " + JSON.stringify(attrs));
+          if (attrs.age < 0) {
+            return "Invalid age.";
+          }
+          if (!attrs.name) {
+            return "Empty name.";
+          }
+        },
+        toString: function () {
+          return `Name: ${this.get("name")} - Age: ${this.get("age")}`;
+        },
+      });
+
+      // Classe View referente a People (collection):
+      var PeopleView = Backbone.View.extend({
+        tagName: "ul",
+
+        initialize: function () {
+          // Exibindo a collection passada
+          // console.log(this.collection)
+        },
+
+        render: function () {
+          this.collection.each((person) => {
+            var personView = new PersonView({ model: person });
+            console.log(personView.el);
+
+            // Anexando cada item ao PeopleView:
+            this.$el.append(personView.render().el);
+          }, this);
+
+          // Retornando o item master ao renderizar:
+          return this;
+        },
+      });
+
+      // Objeto view referente a cada "person":
+      var PersonView = Backbone.View.extend({
+        tagName: "li",
+
+        template: _.template($("#personTemplate").html()),
+
+        initialize: function () {
+          this.render();
+        },
+
+        render: function () {
+          this.$el.html(this.template(this.model.toJSON()));
+
+          // preciso retornar o item para o item master
+          return this;
+        },
+      });
+
+      var PersonCollection = Backbone.Collection.extend({});
+
+      var pc = new PersonCollection([
+        { name: "Carmen", age: 25 },
+        { name: "Anne", age: 28 },
+        { name: "Lucy", age: 31 },
+      ]);
+
+      // criando uma view collection e anexando uma collection:
+      var peopleView = new PeopleView({ collection: pc });
+
+      // Anexando ao body o PeopleView (master) a body:
+      $(document.body).append(peopleView.render().el);
+    </script>
+  </body>
+</html>

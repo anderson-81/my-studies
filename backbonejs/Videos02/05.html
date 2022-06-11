@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>More on Model</title>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+  </head>
+  <body>
+    <script>
+      var ModelDemo = Backbone.Model.extend({
+        defaults: {
+          number: 123,
+          text: "Hello, World!",
+          boolean: true,
+          date: new Date(),
+        },
+        /*
+        constructor: function () {
+          document.write("Constructor executed.");
+        },
+        */
+        preinitialize: function () {
+          document.write("ModelDemo preinitialized.");
+        },
+        initialize: function () {
+          document.write("ModelDemo initialized.");
+        },
+        validate: function (attrs) {
+          if (!attrs.text) {
+            return "Empty text.";
+          }
+        },
+      });
+
+      var modelDemo = new ModelDemo();
+
+      modelDemo.on("invalid", function (model, error) {
+        console.log(error);
+      });
+
+      var i = 0;
+
+      while (i < 10) {
+        modelDemo.set({ text: "" }, { validate: true });
+        i++;
+      }
+
+      console.log(modelDemo)
+
+      if (!modelDemo.isValid()) {
+        document.write(modelDemo.validateError);
+      }
+
+      /*
+      modelDemo.save({
+        attr1: "data01",
+        attr2: "data02",
+      });
+      */
+    </script>
+  </body>
+</html>

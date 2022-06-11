@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog Boxes</title>
+    <script>
+
+        function dialog01() {
+            alert("Hello, World!");
+        }
+
+        function dialog02() {
+            var name = "";
+            name = prompt("Enter your name: ");
+            alert("Hello, " + name + "!");
+        }
+
+        function dialog03() {
+            var name = "";
+            var result = confirm("Do you want ... ?");
+            if (result) {
+                alert("Yes!");
+            }
+            else {
+                alert("No!");
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <input type="button" value="Alert" onclick="dialog01()">
+        <input type="button" value="Prompt" onclick="dialog02()">
+        <input type="button" value="Confirm" onclick="dialog03()">
+    </div>
+</body>
+
+</html>

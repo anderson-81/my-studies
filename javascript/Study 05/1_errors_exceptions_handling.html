@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errors & Exceptions Handling</title>
+    <script>
+
+        /*
+        window.onerror = function () {
+            alert("An error occurred.");
+        }
+        */
+
+        window.onerror = (msg, url, line) => {
+            console.log("Message: " + msg);
+            console.log("Url: " + url);
+            console.log("Line: " + line);
+        }
+
+        var func1 = (x, y) => {
+            document.write("<br><br>Função 01:");
+            try {
+                var r = x / y;
+                document.write("<br>" + x + " / " + y + " = " + r);
+            } catch (e) {
+                document.write("Error: " + e);
+            }
+        }
+
+        var func2 = (x, y) => {
+            document.write("<br><br>Função 02:");
+            try {
+                if (y == 0) {
+                    throw ("Divise by zero."); // Preciso criar o catch(e){} para mostrar as mensagens.
+                }
+                var r = x / y;
+                document.write("<br>");;
+                document.write(x + " / " + y + " = " + r);
+            } catch (e) {
+                document.write("<br>Error: " + e);
+            } finally {
+                document.write("<br>Finish!");
+            }
+        }
+
+        func1(6, 3);
+        func2(6, 0);
+        
+    </script>
+</head>
+
+<body>
+    <br><br><br>
+    <input type="button" onclick="myFunc();" value="Function!">
+
+    <img src="myimage.gif" onerror="alert('An error occurred loading the image.')" />
+</body>
+
+</html>

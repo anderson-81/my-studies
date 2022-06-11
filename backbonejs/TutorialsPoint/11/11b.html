@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View - b</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      PersonView = Backbone.View.extend({
+        initialize: function () {
+          document.write("PersonView initialize!");
+        },
+      });
+
+      var pv = new PersonView({ el: $("myapp") });
+    </script>
+
+    <div id="myapp"></div>
+  </body>
+</html>

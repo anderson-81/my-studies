@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Router</title>
+  </head>
+  <body>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <script>
+      var Route1 = Backbone.View.extend({
+        template: "<h1>Route 01</h1>",
+
+        // Configurando a inicialização da rota:
+        execute: function () {
+          this.$el.html(this.template);
+        },
+
+        // Executando a rota:
+        initialize: function () {
+          this.execute();
+        },
+      });
+
+      var Route2 = Backbone.View.extend({
+        template: "<h1>Route 02</h1>",
+
+        // Configurando a inicialização da rota:
+        execute: function () {
+          this.$el.html(this.template);
+        },
+
+        // Executando a rota:
+        initialize: function () {
+          this.execute();
+        },
+      });
+
+      var Route3 = Backbone.View.extend({
+        template: "<h1>Route 03</h1>",
+
+        // Configurando a inicialização da rota:
+        execute: function () {
+          this.$el.html(this.template);
+        },
+
+        // Executando a rota:
+        initialize: function () {
+          this.execute();
+        },
+      });
+
+      // Gerenciando as rotas anteriormente criadas:
+      var AppRouter = Backbone.Router.extend({
+        routes: {
+          "route/1": "home",
+          "route/2": "contact",
+          "route/3": "about",
+        },
+        home: function () {
+          var route01 = new Route1();
+          $("#app").html(route01.el);
+        },
+        contact: function () {
+          var route02 = new Route2();
+          $("#app").html(route02.el);
+        },
+        about: function () {
+          var route03 = new Route3();
+          $("#app").html(route03.el);
+        },
+      });
+
+      var appRouter = new AppRouter();
+      Backbone.history.start(); // escutando os roteamentos...
+    </script>
+
+    <div id="menu">
+      <a href="#/route/1">Rota 01</a> | <a href="#/route/2">Rota 02</a> |
+      <a href="#/route/3">Rota 03</a>
+    </div>
+
+    <div id="app"></div>
+  </body>
+</html>

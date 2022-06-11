@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adding and Removing elements</title>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+  </head>
+  <body>
+    <script>
+      var Person = Backbone.Model.extend({
+        defaults: {
+          id: 1,
+          name: "Anderson",
+        },
+      });
+
+      var People = Backbone.Collection.extend({ model: Person });
+
+      $(document).ready(function () {
+        var people = new People();
+        var person1 = new Person();
+        var person2 = new Person({ id: 2, name: "Carmen" });
+        var person3 = new Person({ id: 3, name: "Lucy" });
+        people.add([person1, person2]);
+        
+        // Adicionando:
+        document.write('<h1>Adicionando</h1>')
+        people.add([person3]);
+        document.write(JSON.stringify(people.toJSON()))
+
+        //  Removendo:
+        document.write('<h1>Removendo</h1>')
+        people.remove([person2]);
+        document.write(JSON.stringify(people.toJSON()))
+      });
+    </script>
+  </body>
+</html>

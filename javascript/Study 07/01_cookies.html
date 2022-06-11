@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookies</title>
+    <script>
+      // Cookies
+      /*
+        Navegadores e servidores da Web usam o protocolo HTTP para se comunicar. HTTP é um protocolo sem estado, 
+        ou seja, não mantém os dados do cliente em várias solicitações feitas pelo cliente. Esse ciclo completo 
+        de solicitação-resposta entre o cliente e o servidor é definido como uma sessão . 
+        Os cookies são o mecanismo padrão usado pelos navegadores para armazenar dados pertencentes 
+        à sessão de um usuário.
+        */
+
+      /*
+        Os cookies são um registro de dados em texto sem formatação de 5 campos de tamanho variável.
+        Expira - a data em que o cookie expira. Se estiver em branco, o cookie expirará quando o visitante sair do navegador.
+
+        Domínio - o nome do domínio do seu site.
+
+        Caminho - O caminho para o diretório ou página da web que define o cookie. Pode ficar em branco se você quiser 
+        recuperar o cookie de qualquer diretório ou página.
+
+        Seguro - Se este campo contiver a palavra "seguro", o cookie poderá ser recuperado apenas com um servidor seguro. 
+        Se este campo estiver em branco, não existe essa restrição.
+
+        Nome = Valor - Os cookies são definidos e recuperados na forma de pares de valores-chave.
+        */
+
+      function create() {
+        let name = document.frmcookie.name.value;
+        if (name.length == 0) {
+          return;
+        }
+        let cookievalue = escape(name) + ";";
+        document.cookie = "name = " + cookievalue;
+        alert("Successfully created.");
+        document.frmcookie.name.value = "";
+
+        console.log(document.cookie);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Cookie</h1>
+    <form name="frmcookie">
+      <input type="text" name="name" placeholder="Enter a name" />
+      <input type="button" onclick="create()" value="CREATE" />
+    </form>
+  </body>
+</html>

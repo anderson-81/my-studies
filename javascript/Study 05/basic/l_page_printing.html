@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print</title>
+
+    <script>
+        function Print(){
+            var result = confirm("Do you want print this page?");
+            if(result){
+                window.print();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <a href="javascript:void(Print())">Print</a>
+    </div>
+</body>
+</html>

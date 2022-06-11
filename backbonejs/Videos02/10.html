@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+
+    <style>
+      .div-red {
+        height: 200px;
+        width: 200px;
+        background-color: red;
+        cursor: text;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script id="template01" type="text/template">
+      <h1>Events</h1>
+      <button style="cursor:pointer;">CLICK</button>
+      <br><br><br>
+      <div id="div01" class="div-red"></div>
+    </script>
+
+    <script>
+      var ViewDemo = Backbone.View.extend({
+        el: "#app",
+        template: _.template($("#template01").html()),
+        initialize: function () {
+          this.render();
+        },
+        render: function () {
+          this.$el.html(this.template());
+        },
+        toAlert: function () {
+          alert("Hello, World!");
+        },
+        events: {
+          // "click": "toAlert", // Clicar em qualquer lugar.
+          "click button": "toAlert",
+          "mouseover .div-red": "toAlert",
+        },
+      });
+
+      var viewDemo = new ViewDemo();
+    </script>
+  </body>
+</html>
